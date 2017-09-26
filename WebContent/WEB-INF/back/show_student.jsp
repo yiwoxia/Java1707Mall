@@ -47,6 +47,8 @@
 <body>
 	<!-- 调head路径 -->
 	<%@include file="../common/head.jsp" %>
+	<!-- 调头部  -->
+	<jsp:include page="../common/logo.jsp" />
 	
 	 <div class="container">
 	 	<div class="row">
