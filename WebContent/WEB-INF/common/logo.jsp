@@ -11,13 +11,13 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="#">学生管理系统</a>
+		      <a class="navbar-brand" href="#">商城管理系统</a>
 		    </div>
 		
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav">
-		        <li class="active"><a href="${pageContext.request.contextPath }/student/pageList.action">学生管理 <span class="sr-only">(current)</span></a></li>
+		        <li class="active"><a href="${pageContext.request.contextPath }/mall/pageList.action">商城管理 <span class="sr-only">(current)</span></a></li>
 		        <li><a href="${pageContext.request.contextPath }/banji/pageList.action">班级管理</a></li>
 		        <li><a href="${pageContext.request.contextPath }/course/pageList.action">课程管理</a></li>
 		        <li><a href="${pageContext.request.contextPath }/manage/pageList.action">教务管理</a></li>

@@ -1,19 +1,23 @@
 package com.situ.mall.pojo;
 
-public class Product {
+import java.math.BigDecimal;
+import java.util.Date;
 
+public class Product {
+	/**商品id*/
 	private Integer id;
+	/**分类id对应category表*/
 	private Integer category_id;
 	private String name;
 	private String main_image;
 	private String sub_images;
 	private String detail;
-	private String price;
 	private Integer stock;
 	private Integer status;
-	private String create_time;
-	private String update_time;
+	private BigDecimal price;
 	private String subtitle;
+	private Date create_time;
+	private Date update_time;
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -21,8 +25,15 @@ public class Product {
 	
 	
 
+	public Product(Integer category_id) {
+		super();
+		this.category_id = category_id;
+	}
+
+
+
 	public Product(Integer id, Integer category_id, String name, String main_image, String sub_images, String detail,
-			String price, Integer stock, Integer status, String create_time, String update_time, String subtitle) {
+			BigDecimal price, Integer stock, Integer status, Date create_time, Date update_time, String subtitle) {
 		super();
 		this.id = id;
 		this.category_id = category_id;
@@ -64,7 +75,7 @@ public class Product {
 		this.subtitle = subtitle;
 	}
 
-
+	
 
 	public Integer getId() {
 		return id;
@@ -102,10 +113,10 @@ public class Product {
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
-	public String getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 	public Integer getStock() {
@@ -114,16 +125,16 @@ public class Product {
 	public void setStock(Integer stock) {
 		this.stock = stock;
 	}
-	public String getCreate_time() {
+	public Date getCreate_time() {
 		return create_time;
 	}
-	public void setCreate_time(String create_time) {
+	public void setCreate_time(Date create_time) {
 		this.create_time = create_time;
 	}
-	public String getUpdate_time() {
+	public Date getUpdate_time() {
 		return update_time;
 	}
-	public void setUpdate_time(String update_time) {
+	public void setUpdate_time(Date update_time) {
 		this.update_time = update_time;
 	}
 

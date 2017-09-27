@@ -3,10 +3,92 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.situ.mall.dao.ProductDao">
-  	
+  <sql id="proColums">
+  	id,category_id,NAME,main_image,subtitle,price,stock,subtitle,status,create_time,update_time
+  </sql>
+  	  <!-- 查找学生和班级的Map -->
+    <resultMap type="Product" id="ProductMap">
+    	<id column="id" property="id" />
+    	<result column="category_id" property="category_id" />
+    	<result column="name" property="name" />
+    	<result column="subtitle" property="subtitle" />
+    	<result column="price" property="price" />
+    	<result column="stock" property="stock"  />
+    	<result column="subtitle" property="subtitle"  />
+    	<result column="main_image" property="main_image"  />
+    	<result column="create_time" property="create_time"  />
+    	<result column="update_time" property="update_time"  />
+    </resultMap>
   	 <!-- 查找所有的信息 -->
   	<select id="finAll" resultType="Product">
   		select * from product;
   	</select>
-  	
+  	<!-- 根据分页查询学生信息 -->
+  	<select id="pageList" parameterType="PageBean" resultMap="ProductMap">
+  		SELECT id,category_id,NAME,subtitle,price,stock,subtitle,status,main_image,create_time,update_time FROM product 
+  		LIMIT #{pageIndex},#{pageSize};
+  	</select>
+  	<select id="totalSize" resultType="int">
+  		SELECT COUNT(*) FROM product;
+  	</select>
+  	<!-- 添加  -->
+  	<insert id="addProduct" parameterType="Product">
+  		INSERT INTO product (id,category_id,NAME,main_image,subtitle,price,stock,create_time,update_time) 
+  		VALUES(#{id},#{category_id},#{name},#{main_image},#{subtitle},#{price},#{stock},now(),now());
+  	</insert>
+  	<!-- 分页有条件 -->
+  	<select id="pageListByCondition" parameterType="SearchCondition" resultMap="ProductMap">
+  		select <include refid="proColums"/>
+  		from	product 
+  		<where>
+  			<if test="product.category_id!=null and product.category_id!=''">
+  				and category_id like '%${product.category_id}%'
+  			</if>
+  			<!-- <if test="name!=null and name!=''">
+  				and name like '%${name}%'
+  			</if>
+  			<if test="subtitle!=null and subtitle!=''">
+  				and subtitle like '%${subtitle}%'
+  			</if>
+  			<if test="status!=null and status!=''">
+  				and status like '${status}'
+  			</if>
+  			<if test="stock!=null and stock!=''">
+  				and stock like '${stock}'
+  			</if>
+  			<if test="subtitle!=null and subtitle!=''">
+  				and subtitle like '${subtitle}'
+  			</if>
+  			<if test="create_time!=null and create_time!=''">
+  				and create_time like '${create_time}'
+  			</if>
+  			<if test="update_time!=null and update_time!=''">
+  				and update_time like '${update_time}'
+  			</if> -->
+  		</where>
+  		ORDER BY id LIMIT #{pageIndex},#{pageSzie};
+  	</select>
+  	<!-- 根据条件查询有多少数据 -->
+  	<select id="totalSizeByCondition" parameterType="SearchCondition" resultType="int">
+  		SELECT COUNT(*) FROM product 
+  			<where>
+	  			<if test="product.category_id!=null and product.category_id!=''">
+	  				and category_id like '%${product.category_id}%'
+	  			</if>
+	
+  		</where>
+  	</select>
+  	<!-- 修改 -->
+  	<update id="update" parameterType="Product">
+  		UPDATE  product SET category_id=#{category_id},NAME=#{name},subtitle=#{subtitle},price=#{price},stock=#{stock},update_time=now() WHERE id=#{id};
+  	</update>
+  	<!-- 根据Id查询 -->
+   <select id="findById" parameterType="int" resultMap="ProductMap">
+   		SELECT<include refid="proColums"></include>
+   		FROM product WHERE id=#{id};
+   </select>
+   <!-- 根据ID删除  -->
+   <delete id="deleteById" parameterType="int">
+   		DELETE FROM product WHERE id =#{id};
+   </delete>
   </mapper>
