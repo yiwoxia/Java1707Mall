@@ -14,5 +14,16 @@ public interface CategroryDao {
 	 * @return
 	 */
 	public List<Categrory> finAll();
+	/**
+	 * 查询全部的父类分类
+	 * @return
+	 */
+	public List<Categrory> findAllCategoryParent();
+	/**
+	 * 根据父类的id查询子类
+	 * @param parenId
+	 * @return
+	 */
+	public List<Categrory> findAllCategory(Integer parentId);
 		
-}
+}	

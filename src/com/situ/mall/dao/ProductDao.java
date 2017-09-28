@@ -2,6 +2,7 @@ package com.situ.mall.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.situ.mall.pojo.Product;
@@ -19,10 +20,14 @@ public interface ProductDao {
 	 * 分页
 	 * @return
 	 */
-	public int totalSize();
-	public List<Product> pageList(PageBean<Product> pageBean);
+	public List<Product> pageList(@Param("pageIndex")Integer pageIndex, @Param("pageSize")Integer pageSize);
 	/**
-	 * 添加
+	 * 获得数据库中数量的数量
+	 * @return int
+	 */
+	public int totalSize();
+	/**
+	 * 添加添加商品
 	 * @param product
 	 * @return
 	 */
@@ -32,25 +37,37 @@ public interface ProductDao {
 	 * @param condition
 	 * @return
 	 */
-	public int totalSizeByCondition(SearchCondition condition);
 	public List<Product> pageListByCondition(SearchCondition condition);
+	/**
+	 * 根据条件查询数据的数量
+	 * @param condition
+	 * @return int
+	 */
+	public int totalSizeByCondition(SearchCondition condition);
 	/**
 	 * 修改
 	 * @param product
 	 * @return
 	 */
-	public boolean update(Product product);
+	public boolean updateProduct(Product product);
+	/**
+	 * 修改商品的状态
+	 * @param id
+	 * @param status
+	 * @return int
+	 */
+	public int updateStatus(Product product);
 	/**
 	 * 根据Id查询
 	 * @param id
 	 * @return
 	 */
-	public Product findById(int id);
+	public Product findById(Integer id);
 	/**
-	 * 删除
+	 * 根据id删除商品
 	 * @param id
 	 * @return
 	 */
-	public boolean deleteById(int id);
+	public int deleteById(int id);
 
 }

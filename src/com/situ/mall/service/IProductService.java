@@ -21,10 +21,10 @@ public interface IProductService {
 	 */
 	public PageBean<Product> pageList(Integer pageIndex, Integer pageSize);
 	/**
-	 * 添加
+	 * 添加商品
 	 * @param product
 	 */
-	public void addProduct(Product product);
+	public boolean addProduct(Product product);
 	/**
 	 * 分页有条件
 	 * @param pageIndex
@@ -33,19 +33,26 @@ public interface IProductService {
 	 */
 	public PageBean<Product> pageListByCondition(SearchCondition condition);
 	/**
-	 * 修改
+	 * 修改商品
 	 * @param product
 	 * @return
 	 */
-	public boolean update(Product product);
+	public boolean updateProduct(Product product);
 	/**
-	 * 根据Id查询
+	 * 修改商品的状态
+	 * @param id
+	 * @param status
+	 * @return boolean
+	 */
+	public boolean updateStatus(Product product);
+	/**
+	 * 根据id查找商品
 	 * @param id
 	 * @return
 	 */
-	public Product findById(int id);
+	public Product findById(Integer id);
 	/**
-	 * 删除
+	 * 根据id删除商品
 	 * @param id
 	 * @return
 	 */

@@ -1,10 +1,11 @@
 package com.situ.mall.pojo;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 @SuppressWarnings("all")
-public class Categrory implements Serializable {
+public class Category implements Serializable {
+
 	private Integer id;
 	private Integer parentId;
 	private String name;
@@ -13,9 +14,12 @@ public class Categrory implements Serializable {
 	private Date createTime;
 	private Date updateTime;
 	
-	
-	
-	public Categrory(Integer id, Integer parentId, String name, Integer status, Integer sortOrder, Date createTime,
+	public Category() {
+		super();
+		
+	}
+
+	public Category(Integer id, Integer parentId, String name, Integer status, Integer sortOrder, Date createTime,
 			Date updateTime) {
 		super();
 		this.id = id;
@@ -26,14 +30,7 @@ public class Categrory implements Serializable {
 		this.createTime = createTime;
 		this.updateTime = updateTime;
 	}
-	
-	public Categrory() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
-	
-	
 	/**
 	 * @return the id
 	 */
@@ -132,11 +129,17 @@ public class Categrory implements Serializable {
 		this.updateTime = updateTime;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		return "Categrory [id=" + id + ", parentId=" + parentId + ", name=" + name + ", status=" + status
+		return "Category [id=" + id + ", parentId=" + parentId + ", name=" + name + ", status=" + status
 				+ ", sortOrder=" + sortOrder + ", createTime=" + createTime + ", updateTime=" + updateTime + "]";
 	}
+	
+	
+	
 	
 	
 }
