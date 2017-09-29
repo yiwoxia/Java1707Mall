@@ -10,6 +10,9 @@
 <title>添加商城</title>
 <!-- 调head路径 -->
 <%@include file="../common/head.jsp" %>
+<link href="${ctx}/resources/thirdlib/kindeditor/themes/default/default.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" src="${ctx}/resources/thirdlib/kindeditor/kindeditor-all-min.js"></script>
+<script type="text/javascript" charset="utf-8" src="${ctx}/resources/thirdlib/kindeditor/lang/zh_CN.js"></script>
 <style type="text/css">
 		#categoryParentId,#categoryChildId{
 			width: 20%;
@@ -157,7 +160,7 @@ function uploadPic(){
 							<option value="2">下架</option>
 							<option value="3" >删除</option>		
 						</select>
-					</div>
+				</div>
 				<!--   
 				  <div class="form-group">
 					  <label for="exampleInputPassword1">商品价格</label>
@@ -169,11 +172,22 @@ function uploadPic(){
 				  </div> -->
 				   
 				       <div class="form-group">
-				       		<label>上传头像</label>
+				       		<label>产品主图</label>
 				           <img alt="" id="imgId" src="" width=100 height=100>
 				           <input type="hidden" name="mainImage" id="mainImage"/>
 				           <input type="file" name="pictureFile" onchange="uploadPic();"/>
 				       </div>
+				  
+				  	<div class="from-group">
+				  		<label>商品图片</label>
+				  		<a href="javaSCRIPT:void(0)"class="picFileUpload" id="picFileUpload">上传图片</a>
+				  		<input type="hidden" name="subImages" id="subImages"/>
+				  		<div id="J_imageView"></div>
+				  	</div>
+				  	<div calss="form-group">
+				  		<label>商品描述</label>
+				  		<textarea style="width:900px;heighjt:300px;visibility;hidden" name="detail" ></textarea>
+				  	</div>
 				  
 				  <button type="submit" class="btn btn-primary">Submit</button>
 				</form>
@@ -182,5 +196,41 @@ function uploadPic(){
 			<!-- 右边栏结束  -->
 		</div>
 	</div>
+	<!-- 中间内容部分 end -->
 </body>
 </html>
+<script type="text/javascript">
+var myKindEditor ;
+KindEditor.ready(function(K) {
+	var kingEditorParams = {
+			//指定上传文件参数名称
+			filePostName  : "pictureFile",
+			//指定上传文件请求的url请求的是UploadController里面的类型方法。
+			uploadJson : '${ctx}/upload/pic.action',
+			//上传类型，分别为image、flash、media、file
+			dir : "image"
+	}
+	var editor = K.editor(kingEditorParams);
+	//多图片上传
+	K('#picFileUpload').click(function() {
+		editor.loadPlugin('multiimage', function() {
+			editor.plugin.multiImageDialog({
+				clickFn : function(urlList) {
+					console.log(urlList);
+					var div = K('#J_imageView');
+					var imgArray = [];
+					div.html('');
+					K.each(urlList, function(i, data) {
+						imgArray.push(data.name);
+						div.append('<img src="' + data.url + '" width="80" height="50">');
+					});
+					$("#subImages").val(imgArray.join(","));
+					editor.hideDialog();
+				}
+			});
+		});
+	});
+	//富文本编辑器
+	myKindEditor = KindEditor.create('#form-add[name=detail]', kingEditorParams);
+});
+</script>

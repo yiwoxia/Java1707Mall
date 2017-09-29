@@ -1,6 +1,7 @@
 package com.situ.mall.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -120,4 +121,42 @@ public class ProductServiceImpl implements IProductService {
 			return false;
 		}
 	}
+	//全部删除
+/*	@Override
+	public boolean delAll(int[] selectIds) {
+		int result = productDao.delAll(selectIds);
+		if(result > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}*/
+	@Override
+	public boolean delAll(int[] selectIds) {
+		boolean result = false;
+		for (Integer id : selectIds) {
+			productDao.deleteById(id);
+			result = true;
+		}
+		return result;
+		
+	}
+	//批量修改
+	@Override
+	public boolean updateAll(Map<Integer, Integer> map) {
+		int result = 0;
+		for (Map.Entry<Integer,Integer> entry : map.entrySet()) {
+			
+			int status = entry.getValue();
+			if(status == 1){
+				status = 2;
+			}else if(status == 2){
+				status = 1;
+			}
+			result = productDao.updateAll(entry.getKey(),status);
+			result += result;
+		}
+		return result>0?true:false;
+	}
+
 }

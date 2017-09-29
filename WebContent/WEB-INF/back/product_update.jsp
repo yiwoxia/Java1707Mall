@@ -26,7 +26,10 @@
 				dataType : "json",
 				type : "post",
 				success : function(data){
+					/* mainImage获得参数的 */
 					$("#mainImage").val(data.fileName);
+					console.log(data);
+					/* imgSrc图片存储的路径 */
 					$("#imgSrc").attr("src" , "/pic/" + data.fileName);
 				}
 		};
@@ -120,9 +123,9 @@
 					<li role="presentation" class="active"><a href="javascript:void(0)">添加商品</a></li>
 				</ul>
 				<!-- 添加商品 开始 -->
-				<form style="margin-top: 10px;" id="form-add" action="${ctx}/mall/updateProduct.action" method="post"  >
+				<form style="margin-top: 10px;" id="form-add" action="${ctx}/mall/updateProduct.action" method="post" enctype="multipart/form-data" >
 				<input type="hidden" name="id" value="${product.id }" />
-				<!-- 商品分类开始
+				<!-- 商品分类开始  -->
 				  <div class="form-group" onmouseout="selectId()" >
 						<label for="exampleInputEmail1" id="text">产品分类：&nbsp;&nbsp;&nbsp;</label>
 					    <select id="categoryParentId" onchange="selectCategories(this)" class="form-control select">
@@ -134,7 +137,7 @@
 					    </select>
 				  </div>
 				  <input type="hidden" id="categoryId" name="categoryId" >
-				  商品分类结束 -->
+				<!--   商品分类结束 -->
 				  
 				  <div class="form-group">
 					   <label for="exampleInputEmail1">商品名称</label>
@@ -166,8 +169,10 @@
 				  
 				       	<div class="form-group">
 							<label for="exampleInputName2">上传主图</label>
-					 		<img alt="loading" id="imgId" src="/pic/${product.mainImage }" width="50px" height="50px" >
-					 		<input type="hidden" name="mainImage" id="imgSrc" />
+					 						<!-- 获得上面的参数，src如果是这样就是不知道参数“”，如果里面有“”值话就是获得一个默认的参数 -->
+					 		<img alt="loading" id="imgSrc" src="/pic/${product.mainImage }" width="50px" height="50px" >
+					 						<!-- name也是对应这src不知道值但是要获得参数，ID是要数据库传给它的数值 -->
+					 		<input type="hidden" name="mainImage" id="mainImage" />
 					 		<input type="file" name="pictureFile" onchange="uploadPic();" />
 				 		</div>
 				  <button type="submit" class="btn btn-primary">Submit</button>

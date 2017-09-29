@@ -69,5 +69,18 @@ public interface ProductDao {
 	 * @return
 	 */
 	public int deleteById(int id);
+	/**
+	 * 全部删除
+	 * @param selectIds
+	 * @return
+	 */
+	public int delAll(int[] selectIds);
+	/**
+	 * 批量修改上架下架
+	 * @param key
+	 * @param status
+	 * @return
+	 */
+	public int updateAll(@Param("id")Integer id, @Param("status")Integer status);
 
 }

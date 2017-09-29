@@ -1,6 +1,7 @@
 package com.situ.mall.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.situ.mall.pojo.Product;
 import com.situ.mall.vo.PageBean;
@@ -57,5 +58,17 @@ public interface IProductService {
 	 * @return
 	 */
 	public boolean deleteById(int id);
+	/**
+	 * 全部删除
+	 * @param selectIds
+	 * @return
+	 */
+	public boolean delAll(int[] selectIds);
+	/**
+	 * 批量修改
+	 * @param map
+	 * @return
+	 */
+	public boolean updateAll(Map<Integer, Integer> map);
 
 }

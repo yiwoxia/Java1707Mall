@@ -17,7 +17,13 @@
 	.form-group .form-control{
 		width: 90px;
 	}
-	/*使超长的文职变成省略号  只加一个属性即可  ：white-space：nowrap；*/
+	/*使超长的文字变成省略号  只加一个属性即可  ：white-space：nowrap；
+	text-align 属性规定元素中的文本的水平对齐方式。
+	white-space 属性设置如何处理元素内的空白。
+	nowrap文本不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止。
+	overflow 属性规定当内容溢出元素框时发生的事情。
+	hidden 内容会被修剪，并且其余内容是不可见的。
+	ellipsis 显示省略符号来代表被修剪的文本*/
 	td{
 		text-align: center;
 		 white-space:nowrap;
@@ -49,12 +55,14 @@
 			location.href="${ctx}/mall/updateStatus.action?id=" + id + "&status=" + status;
 		}
 	}
+
 	/* 批量删除  */
-	function delProduct(){
+	
+	function deleAll(){
 		   var isDel = confirm("您确认要删除吗？");
 		     if(isDel){
 		    	 //要删除
-		    	$("#delForm").attr("src","${ctx}/mall/deleteById.action");
+		    	$("#delForm").attr("action","${ctx}/mall/delAll.action");
 		    	 //提交
 		    	$("#delForm").submit();
 		     }
@@ -63,6 +71,16 @@
 	/* 全选CheckBox */
 	function selectAll() {
 		$("input[name=selectIds]").prop("checked", $("#selectAlls").is(":checked"))
+	}
+	/* 批量修改 */
+	function updateAllStatus() {
+		var isUpdate = confirm("确定修改？");
+		if (isUpdate) {
+		
+			//var statusIds = $("#statusId").val();
+			$("#delForm").attr("action", urlPRC + "${ctx}/product/updateAllStatus.action");
+			$("#delForm").submit();
+		}
 	}
 	
 </script>
@@ -108,13 +126,15 @@
 			</form> 		
  <!--  多条件查询结束 -->
  <!-- 查询条件 结束 -->
-					<button onclick="javascript:delProduct()"  class="btn btn-default">批量删除</button>
+					<button onclick="javascript:deleAll()"  class="btn btn-default">批量删除</button>
+					<button onclick="javascript:updateAllStatus()"  class="btn btn-default">批量上架</button>
+					<button onclick="javascript:updateAllStatus()"  class="btn btn-default">批量下架</button>
  <!-- 列表开始  -->
-			<form id="delForm" method="post">
+			<form id="delForm" action="" method="post">
             <table class="table table-striped table-bordered table-hover" style="margin-top: 10px;">
 			<tr>
 			    <td>
-			    	<input type="checkbox" onclick="selectAll();" id="slectAlls" /></td>
+			    	<input type="checkbox" onclick="selectAll();" id="selectAlls" /></td>
 			    <td>分类</td>
 				<td>商品名称</td>
 				<td>商品副标题</td>
@@ -139,7 +159,7 @@
 					<td title="${product.stock}">${product.stock}</td>
 					<%-- <td><img alt="" src="/pic/${product.mainImage}" width="50" height="50"></td> --%>
 					<td>
-									<img alt="无图" id="imgId" src="/pic/${product.mainImage }" width="50px" height="50px" >
+						<img alt="无图" id="imgId" src="/pic/${product.mainImage }" width="50px" height="50px" >
 					</td>
 					<td>
 						<c:if test="${product.status==1}">

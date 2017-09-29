@@ -2,7 +2,9 @@ package com.situ.mall.controller.back;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -102,13 +104,6 @@ public class ProductController {
 		
 	}
 	//跳转到修改商品js页面
-/*	@RequestMapping("/toUpdateProduct")
-	private String toUpdate(Integer id, Model model) {
-		
-		Product product = productService.findById(id);
-		model.addAttribute("product", product);
-		return "product_update";
-	}*/
 	@RequestMapping("/toUpdateProduct")
 	private String toUpdate(Integer id, Model model) {
 		
@@ -117,7 +112,30 @@ public class ProductController {
 		System.out.println("查查查查查查查查查查查查查查查爱"+product);
 		return "product_update";
 	}
-	
+	//批量删除
+	@RequestMapping("/delAll")
+	private String delById(int[] selectIds){
+		
+		for (int i : selectIds) {
+			System.out.println(i);
+		}
+		boolean bel = productService.delAll(selectIds);
+		
+		return "redirect:pageList.action";
+		
+	}
+	//批量修改
+	@RequestMapping("/updateAllStatus")
+	private String updateStatus(int[] selectIds,int[] stausIds){
+		
+		Map<Integer,Integer> map = new HashMap<Integer,Integer>();
+		for (int i = 0; i < stausIds.length; i++) {
+			map.put(selectIds[i], stausIds[i]);
+		}
+		boolean bel = productService.updateAll(map);
+		return "redirect:pageList.action";
+		
+	}
 	//删除商品
 	@RequestMapping("/deleteById")
 	private String deleteById(Integer id,Model model){

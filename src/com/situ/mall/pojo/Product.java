@@ -12,7 +12,7 @@ public class Product {
 	private String subtitle;
 	private String mainImage;
 	private String subImages;
-	private String detial;
+	private String detail;
 	private Double price;
 	private Integer stock;
 	private Integer status;
@@ -26,7 +26,7 @@ public class Product {
 	}
 
 	public Product(Integer id, Integer categoryId, String name, String subtitle, String mainImage, String subImages,
-			String detial, Double price, Integer stock, Integer status, Date createTime, Date updateTime,
+			String detail, Double price, Integer stock, Integer status, Date createTime, Date updateTime,
 			Categrory category) {
 		super();
 		this.id = id;
@@ -35,7 +35,7 @@ public class Product {
 		this.subtitle = subtitle;
 		this.mainImage = mainImage;
 		this.subImages = subImages;
-		this.detial = detial;
+		this.detail = detail;
 		this.price = price;
 		this.stock = stock;
 		this.status = status;
@@ -45,7 +45,7 @@ public class Product {
 	}
 
 	public Product(Integer id, Integer categoryId, String name, String subtitle, String mainImage, String subImages,
-			String detial, Double price, Integer stock, Integer status, Date createTime, Date updateTime) {
+			String detail, Double price, Integer stock, Integer status, Date createTime, Date updateTime) {
 		super();
 		this.id = id;
 		this.categoryId = categoryId;
@@ -53,7 +53,7 @@ public class Product {
 		this.subtitle = subtitle;
 		this.mainImage = mainImage;
 		this.subImages = subImages;
-		this.detial = detial;
+		this.detail = detail;
 		this.price = price;
 		this.stock = stock;
 		this.status = status;
@@ -146,17 +146,17 @@ public class Product {
 	}
 
 	/**
-	 * @return the detial
+	 * @return the detail
 	 */
-	public String getDetial() {
-		return detial;
+	public String getdetail() {
+		return detail;
 	}
 
 	/**
-	 * @param detial the detial to set
+	 * @param detail the detail to set
 	 */
-	public void setDetial(String detial) {
-		this.detial = detial;
+	public void setdetail(String detail) {
+		this.detail = detail;
 	}
 
 	/**
@@ -249,7 +249,7 @@ public class Product {
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", categoryId=" + categoryId + ", name=" + name + ", subtitle=" + subtitle
-				+ ", mainImage=" + mainImage + ", subImages=" + subImages + ", detial=" + detial + ", price=" + price
+				+ ", mainImage=" + mainImage + ", subImages=" + subImages + ", detail=" + detail + ", price=" + price
 				+ ", stock=" + stock + ", status=" + status + ", createTime=" + createTime + ", updateTime="
 				+ updateTime + ", category=" + category + "]";
 	}
