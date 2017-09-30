@@ -159,7 +159,9 @@
 					<td title="${product.stock}">${product.stock}</td>
 					<%-- <td><img alt="" src="/pic/${product.mainImage}" width="50" height="50"></td> --%>
 					<td>
-						<img alt="无图" id="imgId" src="/pic/${product.mainImage }" width="50px" height="50px" >
+						<%-- <img alt="无图" id="imgId" src="/pic/${product.mainImage }" width="50px" height="50px" > --%>
+						<img alt="无图" id="imgId" src="${product.fullUrl}" width="50px" height="50px" > 
+						<%-- <img alt="无图" id="imgId"  src="${product.fullUrl}" width="80" height="60" "> --%>
 					</td>
 					<td>
 						<c:if test="${product.status==1}">

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="javax.servlet.http.HttpSession"%>
 <%@ page import="com.situ.mall.pojo.Product"%>
@@ -9,159 +9,193 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>添加商城</title>
 <!-- 调head路径 -->
-<%@include file="../common/head.jsp" %>
-<link href="${ctx}/resources/thirdlib/kindeditor/themes/default/default.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" charset="utf-8" src="${ctx}/resources/thirdlib/kindeditor/kindeditor-all-min.js"></script>
-<script type="text/javascript" charset="utf-8" src="${ctx}/resources/thirdlib/kindeditor/lang/zh_CN.js"></script>
+<%@include file="../common/head.jsp"%>
+<link
+	href="${ctx}/resources/thirdlib/kindeditor/themes/default/default.css"
+	type="text/css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8"
+	src="${ctx}/resources/thirdlib/kindeditor/kindeditor-all-min.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="${ctx}/resources/thirdlib/kindeditor/lang/zh_CN.js"></script>
 <style type="text/css">
-		#categoryParentId,#categoryChildId{
-			width: 20%;
-			float: left;
-			
-		}
-		#text{
-			float: left;
-			margin-top: 7px;
-		}
-		.form-group{
-			clear: left;
-		}
-	</style>
+#categoryParentId, #categoryChildId {
+	width: 20%;
+	float: left;
+}
+
+#text {
+	float: left;
+	margin-top: 7px;
+}
+
+.form-group {
+	clear: left;
+}
+</style>
 <script type="text/javascript">
-function uploadPic(){
+	/* function uploadPic(){
+	 //定义参数("src" , "/pic/" + data.fileName);
+	 var options = {
+	 url : "${pageContext.request.contextPath}/upload/uploadPic.action",
+	 dataType : "json",
+	 type : "post",
+	 success : function(data){
+	 $("#mainImage").val(data.fileName);
+	 $("#imgId").attr("src", data.filePath);
+	 }
+	 };
+	 $("#form-add").ajaxSubmit(options);
+	 } */
+	/* 上传图片  */
+	function uploadPic() {
 		//定义参数
 		var options = {
-				url : "${pageContext.request.contextPath}/upload/uploadPic.action",
-				dataType : "json",
-				type : "post",
-				success : function(data){
-					$("#mainImage").val(data.fileName);
-					$("#imgId").attr("src" , "/pic/" + data.fileName);
-				}
+			url : "${pageContext.request.contextPath}/upload/uploadPic.action",
+			dataType : "json",
+			type : "post",
+			success : function(data) {
+				/* mainImage获得参数的 */
+				$("#mainImage").val(data.fileName);
+				console.log(data);
+				/* imgSrc图片存储的路径 */
+				$("#imgSrc").attr("src", "/pic/" + data.fileName);
+			}
 		};
 		$("#form-add").ajaxSubmit(options);
 	}
 	/*商品分类二级联动开始*/
-	$(function(){
+	$(function() {
 
 		$.ajax({
-			url:"/Java1707Mall/category/categoryParent.action",
-			dateType:"json",
-			success:function(data,textStatus,ajax){
+			url : "/Java1707Mall/category/categoryParent.action",
+			dateType : "json",
+			success : function(data, textStatus, ajax) {
 				//append_template(data, "province");
 				var html = "<option value=''>-请选择1111-</option>";
-				for(var i=0;i<data.length;i++){
-					  html +="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
+				for (var i = 0; i < data.length; i++) {
+					html += "<option value='"+data[i].id+"'>" + data[i].name
+							+ "</option>";
 				}
 				$("#categoryParentId").html(html);
 			}
-		});	
+		});
 	});
-	function selectCategories(obj){
+	function selectCategories(obj) {
 		var parentId = $(obj).val();
 		//清空子类下拉框中的内容，出第一项外
 		$("#categoryChildId option:gt(0)").remove();
 		$.ajax({
-			url:"/Java1707Mall/category/category.action",
+			url : "/Java1707Mall/category/category.action",
 			//内容
-			data:"parentId="+parentId,
+			data : "parentId=" + parentId,
 			//类型
-			dataType:"json",
-			success:function(data,textStatus,ajax){
+			dataType : "json",
+			success : function(data, textStatus, ajax) {
 				//append_template(data, "city");
 				var html = "<option value=''>-请选择-</option>"
-				for(var i=0;i<data.length;i++){
-					html +="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
+				for (var i = 0; i < data.length; i++) {
+					html += "<option value='"+data[i].id+"'>" + data[i].name
+							+ "</option>";
 				}
 				$("#categoryChildId").html(html);
 			}
 		});
 	}
-	 function selectId() {
-			var categoryParentVal = $("#categoryParentId").val();
-			var categoryVal = $("#categoryChildId").val();
-			
-			if (categoryVal != '') {
-				$("#categoryId").val(categoryVal);
-			} else {
-				$("#categoryId").val(categoryParentVal);
-			}
+	function selectId() {
+		var categoryParentVal = $("#categoryParentId").val();
+		var categoryVal = $("#categoryChildId").val();
+
+		if (categoryVal != '') {
+			$("#categoryId").val(categoryVal);
+		} else {
+			$("#categoryId").val(categoryParentVal);
 		}
+	}
 
-	   //封装其通用内容
-	    function append_template(jsonData,target){
-	        var length = jsonData.length;
-	        var html = "<option value=''>-请选择-</option>";
-	        for(var i=0;i<length;i++){
-	            html +="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
-	        }
-	        $("#"+target).html(html);
-	    }; 
-		/* 商品分类二级联动 结束 */
-
+	//封装其通用内容
+	function append_template(jsonData, target) {
+		var length = jsonData.length;
+		var html = "<option value=''>-请选择-</option>";
+		for (var i = 0; i < length; i++) {
+			html += "<option value='"+data[i].id+"'>" + data[i].name
+					+ "</option>";
+		}
+		$("#" + target).html(html);
+	};
+	/* 商品分类二级联动 结束 */
 </script>
 </head>
 <body>
-	
+
 	<!-- 导航条  -->
 	<jsp:include page="../common/logo.jsp" />
-	<div class="container" >
+	<div class="container">
 		<div class="row">
 			<!-- 左边导航栏开始  -->
-			<div class="col-md-2" >
-					<ul class="nav nav-pills nav-stacked">
-					<li role="presentation" ><a href="${prc }/mall/pageList.action">商品管理</a></li>
-					<li role="presentation" class="active"><a href="javascript:void(0)">添加商品</a></li>
+			<div class="col-md-2">
+				<ul class="nav nav-pills nav-stacked">
+					<li role="presentation"><a
+						href="${prc }/mall/pageList.action">商品管理</a></li>
+					<li role="presentation" class="active"><a
+						href="javascript:void(0)">添加商品</a></li>
 				</ul>
 			</div>
 			<!-- 左边导航栏结束  -->
 			<!-- 右边栏开始  -->
 			<div class="col-md-10">
 				<ul class="nav nav-tabs">
-					<li role="presentation" ><a href="${ctx }/student/pageList.action">商品管理</a></li>
-					<li role="presentation" class="active"><a  href="javascript:void(0)">添加商品</a></li>
+					<li role="presentation"><a
+						href="${ctx }/student/pageList.action">商品管理</a></li>
+					<li role="presentation" class="active"><a
+						href="javascript:void(0)">添加商品</a></li>
 				</ul>
 				<!-- 添加商品 开始 -->
-				<form style="margin-top: 10px;" action="${ctx}/mall/addProdutCont.action" method="post" enctype="multipart/form-data" id="form-add">
-				<!-- 商品分类开始 -->
-				  <div class="form-group" onmouseout="selectId()" >
+				<form style="margin-top: 10px;"
+					action="${ctx}/mall/addProdutCont.action" method="post"
+					enctype="multipart/form-data" id="form-add">
+					<!-- 商品分类开始 -->
+					<div class="form-group" onmouseout="selectId()">
 						<label for="exampleInputEmail1" id="text">产品分类：&nbsp;&nbsp;&nbsp;</label>
-					    <select id="categoryParentId" onchange="selectCategories(this)" class="form-control select">
-					       <option value="">-请选择-</option>
-					    </select>
-						<label for="exampleInputEmail1" id="text" >&nbsp;&nbsp;&nbsp;产品类型：&nbsp;&nbsp;&nbsp;</label>
-					    <select id="categoryChildId" class="form-control select" >
-					       <option value="">-请选择-</option>
-					    </select>
-				  </div>
-				  <input type="hidden" id="categoryId" name="categoryId" >
-				<!-- 商品分类结束 -->
-				<div class="form-group">
-					   <label for="exampleInputEmail1">商品名称</label>
-					   <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="商品名称">
-				  </div>
-				  <div class="form-group">
-					   <label for="exampleInputEmail1">	商品副标题</label>
-					   <input type="text" name="subtitle" categoryId" class="form-control" id="exampleInputEmail1" placeholder="副标题">
-				  </div>
-				  <div class="form-group">
-					  <label for="exampleInputPassword1">价格</label>
-					  <input type="text" name="price" class="form-control" id="exampleInputPassword1" placeholder="价格">
-				  </div>
-				  <div class="form-group">
-					  <label for="exampleInputPassword1">库存</label>
-					  <input type="text" name="stock" class="form-control" id="exampleInputPassword1" placeholder="库存">
-				  </div>
-				  <div class="form_group">
-						<label for="exampleInputPassword1">状态</label>
-						<select name="status" class="form-control" >
-							<option value="" >请选择</option>
+						<select id="categoryParentId" onchange="selectCategories(this)"
+							class="form-control select">
+							<option value="">-请选择-</option>
+						</select> <label for="exampleInputEmail1" id="text">&nbsp;&nbsp;&nbsp;产品类型：&nbsp;&nbsp;&nbsp;</label>
+						<select id="categoryChildId" class="form-control select">
+							<option value="">-请选择-</option>
+						</select>
+					</div>
+					<input type="hidden" id="categoryId" name="categoryId">
+					<!-- 商品分类结束 -->
+					<div class="form-group">
+						<label for="exampleInputEmail1">商品名称</label> <input type="text"
+							name="name" class="form-control" id="exampleInputEmail1"
+							placeholder="商品名称">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1"> 商品副标题</label> <input type="text"
+							name="subtitle" categoryId" class="form-control"
+							id="exampleInputEmail1" placeholder="副标题">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">价格</label> <input type="text"
+							name="price" class="form-control" id="exampleInputPassword1"
+							placeholder="价格">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">库存</label> <input type="text"
+							name="stock" class="form-control" id="exampleInputPassword1"
+							placeholder="库存">
+					</div>
+					<div class="form_group">
+						<label for="exampleInputPassword1">状态</label> <select
+							name="status" class="form-control">
+							<option value="">请选择</option>
 							<option value="1">在售</option>
 							<option value="2">下架</option>
-							<option value="3" >删除</option>		
+							<option value="3">删除</option>
 						</select>
-				</div>
-				<!--   
+					</div>
+					<!--   
 				  <div class="form-group">
 					  <label for="exampleInputPassword1">商品价格</label>
 					  <input type="text" name="price" class="form-control" id="exampleInputPassword1" placeholder="商品价格">
@@ -170,26 +204,26 @@ function uploadPic(){
 					  <label for="exampleInputPassword1">货存</label>
 					  <input type="text" name="stock" class="form-control" id="exampleInputPassword1" placeholder="货存">
 				  </div> -->
-				   
-				       <div class="form-group">
-				       		<label>产品主图</label>
-				           <img alt="" id="imgId" src="" width=100 height=100>
-				           <input type="hidden" name="mainImage" id="mainImage"/>
-				           <input type="file" name="pictureFile" onchange="uploadPic();"/>
-				       </div>
-				  
-				  	<div class="from-group">
-				  		<label>商品图片</label>
-				  		<a href="javaSCRIPT:void(0)"class="picFileUpload" id="picFileUpload">上传图片</a>
-				  		<input type="hidden" name="subImages" id="subImages"/>
-				  		<div id="J_imageView"></div>
-				  	</div>
-				  	<div calss="form-group">
-				  		<label>商品描述</label>
-				  		<textarea style="width:900px;heighjt:300px;visibility;hidden" name="detail" ></textarea>
-				  	</div>
-				  
-				  <button type="submit" class="btn btn-primary">Submit</button>
+
+					<div class="form-group">
+						<label>产品主图</label> <img alt="" id="imgId" src="" width=100
+							height=100> <input type="hidden" name="mainImage"
+							id="mainImage" /> <input type="file" name="pictureFile"
+							onchange="uploadPic();" />
+					</div>
+
+					<div class="from-group">
+						<label>商品图片</label> <a href="javaSCRIPT:void(0)"
+							class="picFileUpload" id="picFileUpload">上传图片</a> <input
+							type="hidden" name="subImages" id="subImages" />
+						<div id="J_imageView"></div>
+					</div>
+					<div calss="form-group">
+						<label>商品描述</label>
+						<textarea style="width: 900px; heighjt: 300px;" name="detail"></textarea>
+					</div>
+
+					<button type="submit" class="btn btn-primary">Submit</button>
 				</form>
 				<!-- 添加学生 结束 -->
 			</div>
@@ -200,37 +234,65 @@ function uploadPic(){
 </body>
 </html>
 <script type="text/javascript">
-var myKindEditor ;
-KindEditor.ready(function(K) {
-	var kingEditorParams = {
-			//指定上传文件参数名称
-			filePostName  : "pictureFile",
-			//指定上传文件请求的url请求的是UploadController里面的类型方法。
-			uploadJson : '${ctx}/upload/pic.action',
-			//上传类型，分别为image、flash、media、file
-			dir : "image"
-	}
-	var editor = K.editor(kingEditorParams);
-	//多图片上传
-	K('#picFileUpload').click(function() {
-		editor.loadPlugin('multiimage', function() {
-			editor.plugin.multiImageDialog({
-				clickFn : function(urlList) {
-					console.log(urlList);
-					var div = K('#J_imageView');
-					var imgArray = [];
-					div.html('');
-					K.each(urlList, function(i, data) {
-						imgArray.push(data.name);
-						div.append('<img src="' + data.url + '" width="80" height="50">');
-					});
-					$("#subImages").val(imgArray.join(","));
-					editor.hideDialog();
+	var myKindEditor;
+	KindEditor
+			.ready(function(K) {
+				var kingEditorParams = {
+					//指定上传文件参数名称
+					filePostName : "pictureFile",
+					//指定上传文件请求的url请求的是UploadController里面的类型方法。
+					uploadJson : '${ctx}/upload/pic.action',
+					//上传类型，分别为image、flash、media、file
+					dir : "image",
+					afterBlur : function() {
+						this.sync();
+					}
 				}
+				var editor = K.editor(kingEditorParams);
+				//多图片上传
+				K('#picFileUpload')
+						.click(
+								function() {
+									editor
+											.loadPlugin(
+													'multiimage',
+													function() {
+														editor.plugin
+																.multiImageDialog({
+																	clickFn : function(
+																			urlList) {
+																		console
+																				.log(urlList);
+																		var div = K('#J_imageView');
+																		var imgArray = [];
+																		div
+																				.html('');
+																		K
+																				.each(
+																						urlList,
+																						function(
+																								i,
+																								data) {
+																							imgArray
+																									.push(data.name);
+																							div
+																									.append('<img src="' + data.url + '" width="80" height="50">');
+																						});
+																		$(
+																				"#subImages")
+																				.val(
+																						imgArray
+																								.join(","));
+																		editor
+																				.hideDialog();
+																		editor
+																				.sync();
+																	}
+																});
+													});
+								});
+				//富文本编辑器
+				myKindEditor = KindEditor.create('#form-add[name=detail]',
+						kingEditorParams);
 			});
-		});
-	});
-	//富文本编辑器
-	myKindEditor = KindEditor.create('#form-add[name=detail]', kingEditorParams);
-});
 </script>

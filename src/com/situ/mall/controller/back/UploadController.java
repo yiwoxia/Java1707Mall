@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.situ.mall.constant.MallConstant;
 import com.situ.mall.util.JsonUtils;
+import com.situ.mall.util.QiniuUploadUtil;
 
 @Controller
 @RequestMapping("/upload")
@@ -23,6 +24,13 @@ public class UploadController {
 	@RequestMapping("/uploadPic")
 	@ResponseBody
 	public Map<String,Object> uploadPic(MultipartFile pictureFile){
+		//普通上传
+		//return upload(pictureFile);
+		//上传到七牛
+		return uploadByQiniu(pictureFile);
+	}
+
+	private Map<String, Object> upload(MultipartFile pictureFile) {
 		//为了防止重名生成一个随机的名字:aa4fb86a7896458a8c5b34c634011ae3
 		String name = UUID.randomUUID().toString().replace("-", "");
 		//jpg,png
@@ -40,6 +48,21 @@ public class UploadController {
 		   
 		 Map<String,Object> map = new HashMap<String,Object>();
 		 map.put("fileName", fileName);
+		 map.put("filePath", MallConstant.SERVER_ADDRES + fileName);
+		return map;
+	}
+
+	private Map<String, Object> uploadByQiniu(MultipartFile pictureFile) {
+		String fileName = "";
+		try {
+			fileName = QiniuUploadUtil.upload(pictureFile.getBytes());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("fileName", fileName);
+		map.put("filePath", QiniuUploadUtil.SERVER_ADDRES + fileName);
 		return map;
 	}
 	
@@ -59,9 +82,10 @@ public class UploadController {
 			/*将图片名字和图片格式进行拼接起来*/
 			String fileName = name + "." + ext;
 			/*获取MallConstant方法里面的路径将静态路径改为动态路径，为了方便网上七牛上面进行传输图片*/
-			String filePath = MallConstant.SERVER_ADDRES + fileName;
+			String filePath1 = "D:\\pic\\" + fileName;
+			String filePath = "/pic/" + fileName;
 			try {
-				pictureFile.transferTo(new File(filePath));
+				pictureFile.transferTo(new File(filePath1));
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {

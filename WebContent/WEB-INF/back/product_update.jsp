@@ -30,7 +30,7 @@
 					$("#mainImage").val(data.fileName);
 					console.log(data);
 					/* imgSrc图片存储的路径 */
-					$("#imgSrc").attr("src" , "/pic/" + data.fileName);
+					$("#imgSrc").attr("src" ,data.filePath);
 				}
 		};
 		$("#form-add").ajaxSubmit(options);
@@ -170,11 +170,12 @@
 				       	<div class="form-group">
 							<label for="exampleInputName2">上传主图</label>
 					 						<!-- 获得上面的参数，src如果是这样就是不知道参数“”，如果里面有“”值话就是获得一个默认的参数 -->
-					 		<img alt="loading" id="imgSrc" src="/pic/${product.mainImage }" width="50px" height="50px" >
+					 		<img alt="loading" id="imgSrc" src="http://ox1pbc20y.bkt.clouddn.com/${product.mainImage }" width="50px" height="50px" >
 					 						<!-- name也是对应这src不知道值但是要获得参数，ID是要数据库传给它的数值 -->
 					 		<input type="hidden" name="mainImage" id="mainImage" />
 					 		<input type="file" name="pictureFile" onchange="uploadPic();" />
 				 		</div>
+				 		
 				  <button type="submit" class="btn btn-primary">Submit</button>
 				  </div>
 				  
