@@ -36,53 +36,9 @@
 	}
 </style>
 <script type="text/javascript">
-	/* 用于高级查询分页 */
-	function goPage(pageIndex) {
-		$("#pageIndex").val(pageIndex);
-		$("#a").submit();
-	}
-	/* 删除商品  */
-	function deleProduct(id){
-		var isDel = confirm("您确认要删除吗？")
-		if(isDel){
-			location.href="${ctx}/mall/deleteById.action?id=" + id;
-		}
-	}
-	/* 更改商品状态  */
-	function updateStatus(id, status) {
-		var isUpdate = confirm("确定修改？");
-		if (isUpdate) {
-			location.href="${ctx}/mall/updateStatus.action?id=" + id + "&status=" + status;
-		}
-	}
-
-	/* 批量删除  */
-	
-	function deleAll(){
-		   var isDel = confirm("您确认要删除吗？");
-		     if(isDel){
-		    	 //要删除
-		    	$("#delForm").attr("action","${ctx}/mall/delAll.action");
-		    	 //提交
-		    	$("#delForm").submit();
-		     }
-		
-		} 
-	/* 全选CheckBox */
-	function selectAll() {
-		$("input[name=selectIds]").prop("checked", $("#selectAlls").is(":checked"))
-	}
-	/* 批量修改 */
-	function updateAllStatus() {
-		var isUpdate = confirm("确定修改？");
-		if (isUpdate) {
-		
-			//var statusIds = $("#statusId").val();
-			$("#delForm").attr("action", urlPRC + "${ctx}/product/updateAllStatus.action");
-			$("#delForm").submit();
-		}
-	}
-	
+	var urlPRC="${pageContext.request.contextPath}";
+</script>
+<script type="text/javascript" src="${ctx}/resources/js/product-list-js.js">
 </script>
 </head>
 <body>

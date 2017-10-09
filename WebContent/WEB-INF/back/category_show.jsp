@@ -142,57 +142,57 @@
 					</table>
 				</form>
 				<!-- 学生列表结束 -->
-				<!-- 分页 开始 -->
-				<nav aria-label="Page navigation">
+		<!--分页开始  -->
+				<div align="center">
+					<nav aria-label="Page navigation">
 					<ul class="pagination">
-						<!-- 左箭头开始 -->
-						<c:if test="${pageBean.pageIndex == 1 }">
-							<li class="disabled">
-							<a href="javascript:void(0)" aria-label="Previous">
-								<span aria-hidden="true"  >&laquo;</span>
+						<!-- 上一页 开始-->
+						<c:if test="${pageBean.pageIndex==1}">
+						  <li class="disabled"><a href="javascript:void(0)" aria-label="Previous">
+						      <span aria-hidden="true">&laquo;</span>
 							</a>
-							</li>
+						  </li>
 						</c:if>
-						<c:if test="${pageBean.pageIndex != 1 }">
+		
+						<c:if test="${pageBean.pageIndex!=1}">
 							<li>
-							<a href="javascript:goPage('${pageBean.pageIndex - 1}');" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-							</a>
+							   <a href="javascript:goPage('${pageBean.pageIndex-1 }');"
+								aria-label="Previous">
+							      <span aria-hidden="true">&laquo;</span>
+							   </a>
 							</li>
 						</c:if>
-						<!--左箭头 结束  -->
-						<!-- 中间数字开始 -->
-						
-						<c:forEach begin="1" end="${pageBean.totalPage }" var="page">
-							<c:if test="${pageBean.pageIndex == page }">
-								<li class="active"><a href="javascript:goPage('${page }');">${page }</a></li>
+					   <!-- 上一页 结束-->
+						<c:forEach begin="1" end="${pageBean.totalpage}" var="page">
+							<c:if test="${pageBean.pageIndex!=page}">
+								
+						             <li><a href="javascript:goPage('${page}');">${page}</a></li> 
 							</c:if>
-							<c:if test="${pageBean.pageIndex != page }">
-								<li><a href="javascript:goPage('${page }');">${page }</a></li>
+					   <!-- 遍历的时候page和pageIndex相等，高亮显示 -->
+							<c:if test="${pageBean.pageIndex==page}">
+							  
+							  <li class="active"><a href="javascript:goPage('${page}');">${page}</a></li>
 							</c:if>
 						</c:forEach>
-						
-						<!-- 中间数字 结束 -->
-						<!-- 右边箭头 开始 -->
-						<c:if test="${pageBean.pageIndex == pageBean.totalPage }">
-							<li class="disabled">
-							<a href="javascript:void(0)" aria-label="Next">
-								<span aria-hidden="true">&raquo;</span>
-							</a>
+						<!-- 下一页开始   -->
+						<c:if test="${pageBen.pageIndex==pageBean.totalpage }">
+							<li class="disabled"><a href="javascript:void(0)" aria-label="Next">
+							 <span aria-hidden="true">&raquo;</span>
 							</li>
 						</c:if>
-						<c:if test="${pageBean.pageIndex != pageBean.totalPage }">
-							<li>
-							<a href="javascript:goPage('${pageBean.pageIndex + 1}');" aria-label="Next">
-								<span aria-hidden="true">&raquo;</span>
-							</a>
-							</li>
+						<c:if test="${pageBen.pageIndex!=pageBean.totalpage}">
+								 <li>
+									<a href="javascript:goPage('${pageBean.pageIndex+1 }');"
+										aria-label="previous"> 
+								    <span aria-hidden="true">&raquo;</span>
+									</a>
+								 </li>
 						</c:if>
-						
-						<!-- 右边箭头 结束 -->
+						<!-- 下一页结束   -->
 					</ul>
-				</nav>
-				<!-- 分页 结束 -->
+					</nav>
+			    	</div>    
+			<!-- 分页结束 -->	
 			</div>
 			<!-- 右边栏结束  -->
 		</div>

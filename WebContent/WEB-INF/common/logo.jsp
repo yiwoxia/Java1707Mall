@@ -18,7 +18,7 @@
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav">
 		        <li class="active"><a href="${pageContext.request.contextPath }/mall/pageList.action">商城管理 <span class="sr-only">(current)</span></a></li>
-		        <li><a href="${pageContext.request.contextPath }/banji/pageList.action">班级管理</a></li>
+		        <li><a href="${pageContext.request.contextPath }/category/pageList.action">分类管理</a></li>
 		        <li><a href="${pageContext.request.contextPath }/course/pageList.action">课程管理</a></li>
 		        <li><a href="${pageContext.request.contextPath }/manage/pageList.action">教务管理</a></li>
 		      </ul>

@@ -58,7 +58,7 @@
 				$("#mainImage").val(data.fileName);
 				console.log(data);
 				/* imgSrc图片存储的路径 */
-				$("#imgSrc").attr("src", "/pic/" + data.fileName);
+				$("#imgSrc").attr("src", data.filePath);
 			}
 		};
 		$("#form-add").ajaxSubmit(options);
@@ -206,10 +206,10 @@
 				  </div> -->
 
 					<div class="form-group">
-						<label>产品主图</label> <img alt="" id="imgId" src="" width=100
-							height=100> <input type="hidden" name="mainImage"
-							id="mainImage" /> <input type="file" name="pictureFile"
-							onchange="uploadPic();" />
+						<label>产品主图</label> 
+						<img alt="" id="imgSrc" src="" width=100 height=100> 
+						<input type="hidden" name="mainImage" id="mainImage" /> 
+						<input type="file" name="pictureFile" onchange="uploadPic();" />
 					</div>
 
 					<div class="from-group">
@@ -248,51 +248,29 @@
 						this.sync();
 					}
 				}
+	
 				var editor = K.editor(kingEditorParams);
-				//多图片上传
-				K('#picFileUpload')
-						.click(
-								function() {
-									editor
-											.loadPlugin(
-													'multiimage',
-													function() {
-														editor.plugin
-																.multiImageDialog({
-																	clickFn : function(
-																			urlList) {
-																		console
-																				.log(urlList);
-																		var div = K('#J_imageView');
-																		var imgArray = [];
-																		div
-																				.html('');
-																		K
-																				.each(
-																						urlList,
-																						function(
-																								i,
-																								data) {
-																							imgArray
-																									.push(data.name);
-																							div
-																									.append('<img src="' + data.url + '" width="80" height="50">');
-																						});
-																		$(
-																				"#subImages")
-																				.val(
-																						imgArray
-																								.join(","));
-																		editor
-																				.hideDialog();
-																		editor
-																				.sync();
-																	}
-																});
-													});
-								});
+				K('#picFileUpload').click(function() {
+					editor.loadPlugin('multiimage', function() {
+						editor.plugin.multiImageDialog({
+							clickFn : function(urlList) {
+								var div = K('#J_imageView');
+								var imgArray = [];
+								div.html('');
+								K.each(urlList, function(i, data) {
+									var urlStr = data.url;
+		 							var urlIndex = urlStr.lastIndexOf("/") + 1;
+		 							var fileName = urlStr.substr(urlIndex, urlStr.length);
+		 							imgArray.push(fileName);
+		 							div.append('<img src="' + urlStr + '" width="50px" height="80px">');
+		 						});
+								$("#subImages").val(imgArray.join(","));
+								editor.hideDialog();
+							}
+						});
+					});
+				});
 				//富文本编辑器
-				myKindEditor = KindEditor.create('#form-add[name=detail]',
-						kingEditorParams);
+				myKindEditor = KindEditor.create('#form-add[name=detail]', kingEditorParams);
 			});
 </script>
