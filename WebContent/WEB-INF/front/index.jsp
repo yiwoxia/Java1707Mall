@@ -11,9 +11,10 @@
 		<script type="text/javascript">
 		$(function() {
 			var imageUrlStr = '${banner.imageUrl}';
+			/* 将imageUrlStr	存到数组里面 */
 			var strs = new Array();
 			strs = imageUrlStr.split(",");
-			
+			/* 拼接路径赋banner_box*/
 			for (var int = 0; int < strs.length; int++) {
 				$('#banner_box').append("<img class='banner' src='/pic/" + strs[int] + "'>");
 				
@@ -23,10 +24,14 @@
 			}
 			var len = strs.length - 1;
 			var m = 0;
+			/* eq() 选择器选取带有指定 index 值的元素。index 值从 0 开始，所有第一个元素的 index 值是 0（不是 1）。 */
 			$(".banner_box .banner").hide().eq(0).show();
 			function changeImg(){
 				if(m<len){m=m+1}else{m=0}
+				/* removeClass() 方法从被选元素移除一个或多个类。注释：如果没有规定参数，则该方法将从被选元素中删除所有类。 */
+				/* addClass() 方法向被选元素添加一个或多个类名。该方法不会移除已存在的 class 属性，仅仅添加一个或多个类名到 class 属性。 */
 				$(".circle li").removeClass("current").eq(m).addClass("current");
+				/* hide()和show() 方法隐藏被选元素。提示：这与 CSS 属性 display:none 类似。注释：隐藏的元素不会被完全显示（不再影响页面的布局）。提示：如需显示隐藏的元素，请查看 show() 方法。 */
 				$(".banner_box .banner").hide().eq(m).show();
 			}
 			t = setInterval(changeImg,2000);

@@ -12,10 +12,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
 	<meta name="renderer" content="webkit">
 	<title>${name }--分类</title>
+	<%@include file="../common/heads.jsp" %>
 	<%@ include file="common/head.jsp" %>
 	<%@ include file="common/logo.jsp" %>
 	<link rel="stylesheet" href="${ctx }/resources/front/css/index_style.css" />
-	
 
 </head>
 <body>
@@ -26,7 +26,7 @@
 			<div class="menu">
 				<ul class="menu_ul">
 					<li>
-						<a class="current" href="">
+						<a class="current" href="${ctx }/index.shtml" method="post">
 							商城首页
 						</a>
 					</li>
@@ -64,21 +64,37 @@
 				</ul>
 			</div>
 		</div>
-
-			<div style="margin: 10px auto; width: 1100px;">
-				<ul  >
-				<c:forEach items="${pageBean.list }" var="product">
-					<li style="width: 180px;height: 180px; margin: 10px;  float: left;">
-						<a  href="${ctx }/product/detail.shtml?id=${product.id}">
-							<img width="150px" height="150px" src="${product.fullUrl }">
-							<p style="color: black; width:150px; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;" >${product.name }</p>
-							<p style="color: red;" >¥&nbsp;&nbsp;${product.price }</p>
-						</a>
-					</li>
+		<div class="nav_left">
+					<c:forEach items="${parentList }" var="parent">
+					<div style="padding-top: 10px">
+						<span>
+							${parent.name }
+						</span>
+							
+								<c:forEach items="${chilbList }" var="child" >
+									<c:if test="${child.parentId == parent.id }">
+										<a href="${ctx }/search/search.shtml?categoryId=${child.id}&name=${child.name }">${child.name }</a>
+									</c:if>
+								</c:forEach>
+				</div>
 				</c:forEach>
-			</ul>
-			<div class="clearfix"></div>
-			</div>
+		</div>
+				<div class="pc-nav-title"><h3>手机数码</h3></div>
+				<div style="margin: 10px auto; width: 1100px;">
+						<ul  >
+						<c:forEach items="${pageBean.list }" var="product">
+							<li style="width: 180px;height: 180px; margin: 10px;  float: left;">
+								<a  href="${ctx }/product/detail.shtml?id=${product.id}">
+									<img width="150px" height="150px" src="${product.fullUrl }">
+									<p style="color: black; width:150px; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;" >${product.name }</p>
+									<p style="color: red;" >¥&nbsp;&nbsp;${product.price }</p>
+								</a>
+							</li>
+						</c:forEach>
+					</ul>
+					<div class="clearfix"></div>
+				</div>
+	
 			
 	
 
