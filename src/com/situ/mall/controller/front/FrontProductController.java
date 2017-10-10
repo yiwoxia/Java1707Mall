@@ -20,6 +20,7 @@ public class FrontProductController {
 		
 		Product product = productService.findById(id);
 		model.addAttribute("product", product);
+		System.out.println("-------------"+product);
 		return "product_detail";
 	}
 }

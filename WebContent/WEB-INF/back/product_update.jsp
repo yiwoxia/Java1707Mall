@@ -98,21 +98,19 @@
 							<option value="2" >下架</option>								
 							<option value="3" >删除</option>								
 						</select>
-				 	</div>
-				  <button type="submit" class="btn btn-primary">Submit</button>
-				  </div>
-				  
-				       	<div class="form-group">
-							<label for="exampleInputName2">上传主图</label>
-					 						<!-- 获得上面的参数，src如果是这样就是不知道参数“”，如果里面有“”值话就是获得一个默认的参数 -->
-					 		<img alt="loading" id="imgSrc" src="http://ox1pbc20y.bkt.clouddn.com/${product.mainImage }" width="50px" height="50px" >
-					 						<!-- name也是对应这src不知道值但是要获得参数，ID是要数据库传给它的数值 -->
-					 		<input type="hidden" name="mainImage" id="mainImage" />
-					 		<input type="file" name="pictureFile" onchange="uploadPic();" />
-				 		</div>
+					</div>
+			       	<div class="form-group">
+						<label for="exampleInputPassword1">上传主图</label>
+				 						<!-- 获得上面的参数，src如果是这样就是不知道参数“”，如果里面有“”值话就是获得一个默认的参数 -->
+				 		<img alt="loading" id="imgSrc" src="http://ox1pbc20y.bkt.clouddn.com/${product.mainImage }" width="50px" height="50px" >
+				 						<!-- name也是对应这src不知道值但是要获得参数，ID是要数据库传给它的数值 -->
+				 		<input type="hidden" name="mainImage" id="mainImage" />
+				 		<input type="file" name="pictureFile" onchange="uploadPic();" />
+			 		</div>
 				 		
-				  <button type="submit" class="btn btn-primary">Submit</button>
+				  	<button type="submit" class="btn btn-primary">Submit</button>
 				  </div>
+		  
 				  
 				</form>
 				<!-- 添加学生 结束 -->

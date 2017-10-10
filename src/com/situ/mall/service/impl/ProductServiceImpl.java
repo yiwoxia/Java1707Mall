@@ -109,6 +109,7 @@ public class ProductServiceImpl implements IProductService {
 	//根据Id查询
 	@Override
 	public Product findById(Integer id) {
+		System.out.println("++++++++++++++++++"+ productDao.findById(id));
 		return productDao.findById(id);
 	}
 	//删除

@@ -1,9 +1,9 @@
-		body {
+body {
 			margin: 0;
 		}
 		
 		* {
-			font-family: "å¾®è½¯é›…é»‘";
+			font-family: "Î¢ÈíÑÅºÚ";
 			font-size: 14px;
 		}
 		
@@ -120,7 +120,7 @@
 			margin-top: 27px;
 			margin-bottom: 27px;
 		}
-		/*è®¾ç½®ä¸­é—´æ¡†çš„*/
+		/*ÉèÖÃÖĞ¼ä¿òµÄ*/
 		
 		.logo_center .center {
 			height: 74px;
@@ -128,12 +128,12 @@
 			margin-top: 26px;
 			margin-left: 180px;
 		}
-		/*è®¾ç½®inputæ ‡ç­¾ä¸ºå·¦æµ®åŠ¨*/
+		/*ÉèÖÃinput±êÇ©Îª×ó¸¡¶¯*/
 		
 		.logo_center input {
 			float: left;
 		}
-		/*è®¾ç½®æœç´¢æ¡†çš„å®½é«˜ï¼Œè¾¹æ¡† ä»¥åŠå·¦æµ®åŠ¨*/
+		/*ÉèÖÃËÑË÷¿òµÄ¿í¸ß£¬±ß¿ò ÒÔ¼°×ó¸¡¶¯*/
 		
 		.logo_center .btn1 {
 			width: 400px;
@@ -141,7 +141,7 @@
 			border: 2px solid #f41443;
 			float: left;
 		}
-		/*è®¾ç½®æœç´¢æŒ‰é’®çš„å®½é«˜ï¼Œé¢œè‰²ï¼ŒèƒŒæ™¯ä»¥åŠå·¦æµ®åŠ¨*/
+		/*ÉèÖÃËÑË÷°´Å¥µÄ¿í¸ß£¬ÑÕÉ«£¬±³¾°ÒÔ¼°×ó¸¡¶¯*/
 		
 		.logo_center .btn2 {
 			width: 100px;
@@ -150,20 +150,20 @@
 			background: #F41443;
 			float: left;
 		}
-		/*ä¸­é—´ä¸‹æ–¹é“¾æ¥ulæµ®åŠ¨å±æ€§å’Œæ¶ˆé™¤ä¸Šé¢æœç´¢æ¡†å’ŒæŒ‰é’®çš„å·¦æµ®åŠ¨çš„å½±å“ï¼Œè·ç¦»ä¸Šé¢çš„æœç´¢æ¡†3px*/
+		/*ÖĞ¼äÏÂ·½Á´½Óul¸¡¶¯ÊôĞÔºÍÏû³ıÉÏÃæËÑË÷¿òºÍ°´Å¥µÄ×ó¸¡¶¯µÄÓ°Ïì£¬¾àÀëÉÏÃæµÄËÑË÷¿ò3px*/
 		
 		.logo_center .nav {
 			float: left;
 			clear: left;
 			margin-top: 3px;
 		}
-		/*ä¸­é—´ä¸‹æ–¹é“¾æ¥liçš„å·¦æµ®åŠ¨å’Œè·ç¦»å·¦è¾¹4px*/
+		/*ÖĞ¼äÏÂ·½Á´½ÓliµÄ×ó¸¡¶¯ºÍ¾àÀë×ó±ß4px*/
 		
 		.logo_center li {
 			float: left;
 			margin-left: 4px;
 		}
-		/*ä¸­é—´ä¸‹é¢é“¾æ¥çš„é¢œè‰²è®¾ç½®*/
+		/*ÖĞ¼äÏÂÃæÁ´½ÓµÄÑÕÉ«ÉèÖÃ*/
 		
 		.logo_center a {
 			color: #808080;
@@ -257,8 +257,8 @@
 		img {
 			display: block;
 		}
-		/*è§£å†³é€šå±bannerå›¾é€‚åº”ä¸åŒæµè§ˆå™¨åˆ†è¾¨ç‡é—®é¢˜
-			 ä¿è¯çš„å›¾ç‰‡ä¸­å¿ƒåŒºåŸŸåœ¨æµè§ˆå™¨ä¸­æ˜¾ç¤ºä¸­å¿ƒå†…å®¹*/
+		/*½â¾öÍ¨ÆÁbannerÍ¼ÊÊÓ¦²»Í¬ä¯ÀÀÆ÷·Ö±æÂÊÎÊÌâ
+			 ±£Ö¤µÄÍ¼Æ¬ÖĞĞÄÇøÓòÔÚä¯ÀÀÆ÷ÖĞÏÔÊ¾ÖĞĞÄÄÚÈİ*/
 		
 		.banner_box {
 			position: relative;
@@ -285,28 +285,20 @@
 			background: #daecf6;
 		}
 		
-		.nav_left span,.nav_left p {
-			float: left;
-			margin-left: 5px;
-			margin-top: 5px;
-			margin-right: 5px;
-			line-height: 28px;
-		}
+		
 		
 		.nav_left span {
 			font-size: 16px;
 			font-weight: 900;
-			padding-left: 15px;
+			
 			color: #333333;
 		}
 		
-		.nav_left .p {
-			padding-left: 10px;
-		}
+		
 		
 		.nav_left a {
 			color: #666;
-			float: left;
+			
 			margin-left: 5px;
 			margin-right: 5px;
 		}
@@ -314,7 +306,7 @@
 		.nav_left a:hover {
 			color: #F41443;
 		}
-		/*è®¾ç½®ulçš„é«˜åº¦ï¼Œå®šä½çš„æ–¹å¼ï¼Œå‘å·¦50%ï¼Œå¤–è¾¹æ¡†-150px è‡ªä¸‹å¾€ä¸Š40px */
+		/*ÉèÖÃulµÄ¸ß¶È£¬¶¨Î»µÄ·½Ê½£¬Ïò×ó50%£¬Íâ±ß¿ò-150px ×ÔÏÂÍùÉÏ40px */
 		.banner_box .circle {
 			height: 20px;
 			position: absolute;
@@ -322,7 +314,7 @@
 			margin-left: -150px;
 			bottom: 40px;
 		}
-		/*è®¾ç½®li é‡Œé¢çš„åœ†åœˆï¼Œåœ†åœˆçš„èƒŒæ™¯ æµ®åŠ¨çš„é€‰æ‹© å·¦å³çš„è·ç¦»*/
+		/*ÉèÖÃli ÀïÃæµÄÔ²È¦£¬Ô²È¦µÄ±³¾° ¸¡¶¯µÄÑ¡Ôñ ×óÓÒµÄ¾àÀë*/
 		.circle li{
 			width: 20px;
 			height: 20px;
@@ -353,7 +345,7 @@
 		}
 		.nav_top{
 			margin-bottom:20px ;
-			/*çˆ¶çº§çš„padding å°±æ˜¯å­çº§çš„margin*/
+			/*¸¸¼¶µÄpadding ¾ÍÊÇ×Ó¼¶µÄmargin*/
 		}
 		.nav_top img{
 			margin-left: 38px;
@@ -477,7 +469,7 @@
 			margin-top: 66px;
 		}
 		
-		/*------------------æŠ¢è´­åŒº-----------------------------*/
+		/*------------------ÇÀ¹ºÇø-----------------------------*/
 		.panic_Buying{
 			margin-top: 25px;
 			margin-bottom: 25px;
@@ -571,7 +563,7 @@
 			background-position: center 90%;
 			margin-left: 7px;
 		}
-/*------------------------------çº¢äºº--------------------------------------*/		
+/*------------------------------ºìÈË--------------------------------------*/		
 		.person_demo {
 			width: 1100px;
 			margin: auto;
@@ -650,7 +642,7 @@
 			margin-left: 25px;*/
 			
 		}
-		/*------------------------è¡£æœ--------------------------------------*/
+		/*------------------------ÒÂ·ş--------------------------------------*/
 		.cloth {
 			width: 1100px;
 			margin: 0 auto;

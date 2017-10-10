@@ -63,4 +63,9 @@ public interface ICategroryService {
 	 * @param selectIds
 	 */
 	public boolean delAll(Integer[] selectIds);
+	/**
+	 * 获得所有的分类
+	 * @return List<Category>
+	 */
+	public List<Categrory> findAllChildCategory();
 }

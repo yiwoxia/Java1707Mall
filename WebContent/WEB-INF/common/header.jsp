@@ -24,7 +24,7 @@
 		      <ul class="nav navbar-nav">
 		        <li class="active"><a href="${prc }/mall/pageList.action">商品管理 <span class="sr-only">(current)</span></a></li>
 		        <li><a href="${prc }/category/pageList.action">分类管理</a></li>
-		        <li><a href="#">**管理</a></li>
+		        <li><a href="${prc }/banner/pageList.action">广告图管理</a></li>
 		        <li><a href="#">**管理</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">

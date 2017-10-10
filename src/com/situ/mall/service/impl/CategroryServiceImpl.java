@@ -123,4 +123,9 @@ public class CategroryServiceImpl implements ICategroryService {
 		}
 		return  result > 0 ? true : false;
 	}
+	@Override
+	public List<Categrory> findAllChildCategory() {
+		
+		return categroryDao.findAllChildCategory();
+	}
 }

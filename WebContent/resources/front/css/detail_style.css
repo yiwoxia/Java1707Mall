@@ -3,7 +3,7 @@ body {
 }
 
 * {
-	font-family: "å¾®è½¯é›…é»‘";
+	font-family: "Î¢ÈíÑÅºÚ";
 	font-size: 14px;
 	color: #333333;
 }
@@ -278,6 +278,7 @@ input {
 .banner_center .right {
 	margin-left: 15px;
 	float: left;
+	width: 710px;
 	/*border: 1px solid red;*/
 }
 
@@ -290,7 +291,7 @@ input {
 	margin-bottom: 8px;
 	font-size: 18px;
 	font-weight: 600;
-	font-family: "é»‘ä½“";
+	font-family: "ºÚÌå";
 	float: left;
 }
 
@@ -903,7 +904,7 @@ input {
 .right_big .big_img{
 	float: right;
 	margin-top: 40px;
-	margin-right: 174px;
+	margin-right: 120px;
 }
 .right_big_bottom{
 	float: right;

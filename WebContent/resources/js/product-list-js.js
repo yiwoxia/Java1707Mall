@@ -7,14 +7,14 @@
 	function deleProduct(id){
 		var isDel = confirm("您确认要删除吗？")
 		if(isDel){
-			location.href="${ctx}/mall/deleteById.action?id=" + id;
+			location.href=urlPRC+"/mall/deleteById.action?id=" + id;
 		}
 	}
 	/* 更改商品状态  */
 	function updateStatus(id, status) {
 		var isUpdate = confirm("确定修改？");
 		if (isUpdate) {
-			location.href="${ctx}/mall/updateStatus.action?id=" + id + "&status=" + status;
+			location.href=urlPRC+"/mall/updateStatus.action?id=" + id + "&status=" + status;
 		}
 	}
 
@@ -24,7 +24,7 @@
 		   var isDel = confirm("您确认要删除吗？");
 		     if(isDel){
 		    	 //要删除
-		    	$("#delForm").attr("action","${ctx}/mall/delAll.action");
+		    	$("#delForm").attr("action",urlPRC+"/mall/delAll.action");
 		    	 //提交
 		    	$("#delForm").submit();
 		     }
@@ -40,7 +40,7 @@
 		if (isUpdate) {
 		
 			//var statusIds = $("#statusId").val();
-			$("#delForm").attr("action", urlPRC + "${ctx}/product/updateAllStatus.action");
+			$("#delForm").attr("action", urlPRC + "/product/updateAllStatus.action");
 			$("#delForm").submit();
 		}
 	}

@@ -79,3 +79,8 @@
 		$(function() {
 			$("#status option[value='${product.status}']").prop("selected", true);
 		});
+		
+		
+		
+		
+		

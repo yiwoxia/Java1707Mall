@@ -71,5 +71,10 @@ public interface CategroryDao {
 	 * @return
 	 */
 	public int delCategory(Integer integer);
+	/**
+	 * 获得所有的分类
+	 * @return
+	 */
+	public List<Categrory> findAllChildCategory();
 		
 }	
