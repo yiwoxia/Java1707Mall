@@ -30,6 +30,7 @@ public class IndexController {
 		System.out.println("8888888888888"+chilbList);
 		Banner banner = bannerService.findBanner();
 		model.addAttribute("banner", banner);
+		System.out.println("&&&&&&&&&&&&&"+banner);
 		return"index";
 	}
 }

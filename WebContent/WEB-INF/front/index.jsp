@@ -34,11 +34,14 @@
 				/* hide()和show() 方法隐藏被选元素。提示：这与 CSS 属性 display:none 类似。注释：隐藏的元素不会被完全显示（不再影响页面的布局）。提示：如需显示隐藏的元素，请查看 show() 方法。 */
 				$(".banner_box .banner").hide().eq(m).show();
 			}
-			t = setInterval(changeImg,2000);
+			/* 设置图片间隔时间长短的 */
+			t = setInterval(changeImg,1000);
+			/* 鼠标在上面的时间间隔 */
 			$(".banner_box").mouseenter(
 				function(){
 				clearInterval(t);
 				}
+				/* 鼠标离开上面的时间间隔  */
 			).mouseleave(
 				function(){
 				t = setInterval(changeImg,1000);
@@ -62,81 +65,14 @@
 		<!-----------------------1.top-------------------->
 		<jsp:include page="../front/common/head.jsp" />
 		<!-----------------------2.logo-------------------->
-		<div class="logo_center">
-			<div class="left">
-				<img class="logo_img" src="${ctx}/resources/front/img/LOGO.png" />
-			</div>
-			<div class="center">
-				<input class="btn1" type="text" value="洗面奶" />
-				<input class="btn2" type="button" value="搜索" />
-				<ul class="nav">
-					<li><a href="" style="color: pink;">保湿 | </a></li>
-					<li><a href="">面膜 | </a></li>
-					<li><a href="">洗面奶 | </a></li>
-					<li><a href="">补水 | </a></li>
-					<li><a href="">香水 | </a></li>
-					<li><a href="">眼霜 | </a></li>
-					<li><a href="">口红 | </a></li>
-					<li><a href="">护肤套装 | </a></li>
-					<li><a href="">BB霜 | </a></li>
-				</ul>
-			</div>
-			<div class="right">
-				<div class="car">
-					<a class="car_pic" href="cart.html" target="_blank">去购物车结算</a>
-				</div>
-				<div class="narrow"></div>
-			</div>
-		</div>
-		<!-----------------------3.导航栏-------------------->
-		<div class="big_menu">
-			<div class="menu">
-				<ul class="menu_ul">
-					<li>
-						<a class="current" href="">
-							商城首页
-						</a>
-					</li>
-					<li>
-						<a href="">
-							美妆商城
-						</a>
-					</li>
-					<li>
-						<a href="">
-							服装运动
-						</a>
-					</li>
-					<li>
-						<a href="">
-							家电数码
-						</a>
-					</li>
-					<li>
-						<a href="">
-							家装家纺
-						</a>
-					</li>
-					<li>
-						<a href="">
-							淘遍美食
-						</a>
-					</li>
-					<li>
-						<a href="">
-							国际轻奢
-						</a>
-					</li>
-					<div class="clearfix"></div>
-				</ul>
-			</div>
-		</div>
+			<%@ include file="common/logo.jsp" %>
 		<!-----------------------4.广告区-------------------->
 		<div class="banner_box">
-			<img class="banner" src="${ctx}/resources/front/img/tu9.png" />
+			<%-- <img class="banner" src="${ctx}/resources/front/img/tu9.png" />
 			<img  class="banner" src="${ctx}/resources/front/img/tu10.png"/>
 			<img class="banner"  src="${ctx}/resources/front/img/tu11.png"/>
-			<img class="banner"  src="${ctx}/resources/front/img/tu8.png"/>
+			<img class="banner"  src="${ctx}/resources/front/img/tu8.png"/> --%>
+			<div id="banner_box" ></div>
 			<div class="banner_center">
 				<div class="nav_left">
 					<!-- <span>
@@ -676,49 +612,5 @@
 			COPYRIGHT 2010-2017 北京创锐文化传媒有限公司 JUMEI.COM 保留一切权利. 客服热线：400-123-888888<br /> 
 			京公网安备 110101020011226|京ICP证111033号|食品流通许可证 SP1101051110165515（1-1）|营业执照
 		</div>
-		<script type="text/javascript">
-			var m = 0;
-			$(".banner_box .banner").hide().eq(0).show();
-			function changeImg(){
-				if(m<3){m=m+1}else{m=0}
-				$(".circle li").removeClass("current").eq(m).addClass("current");
-				$(".banner_box .banner").hide().eq(m).show();
-			}
-			t = setInterval(changeImg,1000);
-			$(".banner_box").mouseenter(
-				function(){
-				clearInterval(t);
-				}
-			).mouseleave(
-				function(){
-				t = setInterval(changeImg,1000);
-				}
-			)
-			$(".circle li").click(
-				function(){
-					m = $(this).index();
-					$(".circle li").removeClass("current").eq(m).addClass("current");
-					$(".banner_box .banner").hide().eq(m).show();
-				}
-			)
-/*			
-			$(".banner_box .banner").hide().eq(0).show();
-			$(".circle li").click(
-				function(){
-					var i = 0;
-					i = $(this).index();
-					$(".banner_box .banner").hide().eq(i).show();
-					
-				}
-			)
-			$(".circle li").click(
-				function(){
-					var n = 0;
-					n = $(this).index();
-					$(".circle li").removeClass("current").eq(n).addClass("current");
-				}
-			)*/
-		</script>
 	</body>
-
 </html>

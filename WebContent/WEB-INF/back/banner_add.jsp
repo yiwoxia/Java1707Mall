@@ -8,9 +8,9 @@
 	<%@include file="../common/head.jsp"%>
 	<!-- head begin -->
 		<%@include file="../common/header.jsp" %>
-<link rel="stylesheet" type="text/css" href="${ctx }/resources/thrLib/kindeditor/themes/default/default.css" />
-<script  type="text/javascript" src="${ctx }/resources/thrLib/kindeditor/kindeditor-all-min.js" /></script>
-<script type="text/javascript" src="${ctx }/resources/thrLib/kindeditor/lang/zh_CN.js"></script>
+<link rel="stylesheet" type="text/css" href="${ctx }/resources/thirdlib/kindeditor/themes/default/default.css" />
+<script  type="text/javascript" src="${ctx }/resources/thirdlib/kindeditor/kindeditor-all-min.js" /></script>
+<script type="text/javascript" src="${ctx }/resources/thirdlib/kindeditor/lang/zh_CN.js"></script>
 <style type="text/css">
 	#categoryParentId,#categoryChildId{
 		width: 20%;
@@ -60,9 +60,9 @@
 				  </div>
 				  
 				 	<div class="from-group">
-						<label>商品图片</label> <a href="javaSCRIPT:void(0)"
-							class="picFileUpload" id="picFileUpload">上传图片</a> <input
-							type="hidden" name="subImages" id="subImages" />
+						<label>商品图片</label> 
+						<a href="javaSCRIPT:void(0)" class="picFileUpload" id="picFileUpload">上传图片</a> 
+						<input type="hidden" name="imageUrl" id="subImages" />
 						<div id="J_imageView"></div>
 					</div>
 					

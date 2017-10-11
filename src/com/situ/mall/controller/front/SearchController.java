@@ -12,13 +12,14 @@ import com.situ.mall.pojo.Product;
 import com.situ.mall.service.ICategroryService;
 import com.situ.mall.service.front.ISearchService;
 import com.situ.mall.vo.PageBean;
+import com.situ.mall.vo.SearchCondition;
 
 @Controller
 @RequestMapping("search")
 public class SearchController {
 
 	@Autowired
-	private ISearchService searchService;
+	private ISearchService  searchService;
 	@Autowired
 	private ICategroryService categoryService;
 	@RequestMapping("search.shtml")
@@ -27,17 +28,40 @@ public class SearchController {
 		if (pageIndex == null) {
 			pageIndex = 1;
 		}
-		pageSize = 15;
+		pageSize = 15; 
 		List<Categrory> parentList = categoryService.fingAllCategoryParent();
 		model.addAttribute("parentList",parentList);
-		System.out.println("6666666666"+parentList);
 		List<Categrory> chilbList = categoryService.findAllChildCategory();
 		model.addAttribute("chilbList",chilbList);
-		System.out.println("8888888888888"+chilbList);
 		PageBean<Product> pageBean = searchService.findByCategory(categoryId, pageIndex, pageSize);
 		model.addAttribute("pageBean", pageBean);
+		System.out.println("999999999999999999999999"+pageBean);
 		model.addAttribute("name", name);
 		return "search";
+	}
+	
+	//分页查询
+	@RequestMapping("SearchCondition.shtml")
+	private String SearchCondition(SearchCondition condition,Model model){
+		if (condition.getPageIndex() ==  null ) {
+			condition.setPageIndex(1);
+		}
+		condition.setPageSzie(3);
+		PageBean<Product> pageBean = searchService.pageListByCondition(condition);
+		model.addAttribute("pageBean",pageBean);
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println("yyyyyyyyyyyyyyyyyyyy"+pageBean);
+		List<Categrory> parentList = categoryService.fingAllCategoryParent();
+		model.addAttribute("parentList",parentList);
+		List<Categrory> chilbList = categoryService.findAllChildCategory();
+		model.addAttribute("chilbList",chilbList);
+		Integer categoryId = condition.getProduct().getCategoryId();
+		model.addAttribute("categoryId", categoryId);
+		String name = condition.getProduct().getName();
+		model.addAttribute("name", name);
+		
+		return "search";
+		
 	}
 	
 }

@@ -1,5 +1,6 @@
 package com.situ.mall.service.front;
 
+import com.situ.mall.pojo.Categrory;
 import com.situ.mall.pojo.Product;
 import com.situ.mall.vo.PageBean;
 
@@ -13,5 +14,11 @@ public interface ISearchService {
 	 * @return PageBean<Product>
 	 */
 	PageBean<Product> findByCategory(Integer categoryId, Integer pageIndex, Integer pageSize);
+	/**
+	 * 对查询到的商品进行分页
+	 * @param condition
+	 * @return
+	 */
+	PageBean<Product> pageListByCondition(com.situ.mall.vo.SearchCondition condition);
 
 }

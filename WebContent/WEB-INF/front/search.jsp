@@ -12,94 +12,118 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
 	<meta name="renderer" content="webkit">
 	<title>${name }--分类</title>
-	<%@include file="../common/heads.jsp" %>
 	<%@ include file="common/head.jsp" %>
 	<%@ include file="common/logo.jsp" %>
-	<link rel="stylesheet" href="${ctx }/resources/front/css/index_style.css" />
+	<link rel="stylesheet" type="text/css" href="${ctx  }/resources/thrLib/bootstrap/css/bootstrap.css" />
+	<link rel="stylesheet" href="${ctx }/resources/front/css/search_style.css"  />
+	<script type="text/javascript" src="${ctx  }/resources/thrLib/jquery/jquery-1.11.1.js"></script>
+	<style type="text/css">
+		.proLi:HOVER{
+			position: relative;
+			top: -2px;
+			left: 2px;
+		}
+	</style>
+	<script type="text/javascript">
+		function goPage(pageIndex) {
+			$("#pageIndex").val(pageIndex);
+			$("#subForm").submit();
+		}
+	</script>
 
 </head>
 <body>
-
-
-		<!-----------------------3.导航栏-------------------->
-		<div class="big_menu">
-			<div class="menu">
-				<ul class="menu_ul">
-					<li>
-						<a class="current" href="${ctx }/index.shtml" method="post">
-							商城首页
-						</a>
-					</li>
-					<li>
-						<a href="">
-							美妆商城
-						</a>
-					</li>
-					<li>
-						<a href="">
-							服装运动
-						</a>
-					</li>
-					<li>
-						<a href="">
-							家电数码
-						</a>
-					</li>
-					<li>
-						<a href="">
-							家装家纺
-						</a>
-					</li>
-					<li>
-						<a href="">
-							淘遍美食
-						</a>
-					</li>
-					<li>
-						<a href="">
-							国际轻奢
-						</a>
-					</li>
-					<div class="clearfix"></div>
-				</ul>
+	<!-- 分类 -->
+	<div style="margin: 10px auto; width: 1100px;">
+			<div class="search_center" style="float: right;">
+				<form id="subForm" action="${ctx  }/search/SearchCondition.shtml" method="post">
+					<input type="hidden" name="pageIndex" id="pageIndex" />
+					<input class="btn1" type="hidden" name="product.categoryId" value="${categoryId }" />
+					<input class="btn1" type="hidden" name="product.name" value="${name }" placeholder="商品名称"/>
+				</form>
 			</div>
-		</div>
-		<div class="nav_left">
-					<c:forEach items="${parentList }" var="parent">
-					<div style="padding-top: 10px">
-						<span>
-							${parent.name }
-						</span>
-							
-								<c:forEach items="${chilbList }" var="child" >
+			<c:forEach items="${parentList }" var="parent">
+				<ul  >
+					<span style="font-size: 18px;font-weight: 900; color: black;">
+						${parent.name }&nbsp;&nbsp;:&nbsp;&nbsp;
+					</span>
+					<c:forEach items="${chilbList }" var="child" >
 									<c:if test="${child.parentId == parent.id }">
-										<a href="${ctx }/search/search.shtml?categoryId=${child.id}&name=${child.name }">${child.name }</a>
+										<a style="text-decoration: none;" href="${ctx }/search/search.shtml?categoryId=${child.id}&name=${child.name }">${child.name }</a>
+										<%-- <span style="margin: 0 5px; color: rgb(244,20,67);">${child.name }</span> --%>
 									</c:if>
 								</c:forEach>
-				</div>
-				</c:forEach>
+				</ul>
+			</c:forEach>
+		<div class="clearfix"></div>
 		</div>
-				<div class="pc-nav-title"><h3>手机数码</h3></div>
-				<div style="margin: 10px auto; width: 1100px;">
-						<ul  >
-						<c:forEach items="${pageBean.list }" var="product">
-							<li style="width: 180px;height: 180px; margin: 10px;  float: left;">
-								<a  href="${ctx }/product/detail.shtml?id=${product.id}">
-									<img width="150px" height="150px" src="${product.fullUrl }">
-									<p style="color: black; width:150px; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;" >${product.name }</p>
-									<p style="color: red;" >¥&nbsp;&nbsp;${product.price }</p>
-								</a>
+		<!-- 商品 -->
+		<div style="margin: 10px auto; width: 1100px;">
+			<ul  >
+			<c:forEach items="${pageBean.list }" var="product">
+				<li style="width: 180px;height: 180px; margin: 10px;  float: left; ">
+					<a  href="${ctx  }/product/detail.shtml?id=${product.id}">
+						<img class="proLi"  width="150px" height="150px" src="${product.fullUrl }">
+						<p style="color: black; width:150px; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;" >${product.name }</p>
+						<p style="color: red;" >¥&nbsp;&nbsp;${product.price }</p>
+					</a>
+				</li>
+			</c:forEach>
+		</ul>
+		<div class="clearfix"></div>
+		</div>
+
+		<!--分页开始  -->
+				<div align="center">
+					<nav aria-label="Page navigation">
+					<ul class="pagination">
+						<!-- 上一页 开始-->
+						<c:if test="${pageBean.pageIndex==1}">
+						  <li class="disabled"><a href="javascript:void(0)" aria-label="Previous">
+						      <span aria-hidden="true">&laquo;</span>
+							</a>
+						  </li>
+						</c:if>
+		
+						<c:if test="${pageBean.pageIndex!=1}">
+							<li>
+							   <a href="javascript:goPage('${pageBean.pageIndex-1 }');"
+								aria-label="Previous">
+							      <span aria-hidden="true">&laquo;</span>
+							   </a>
 							</li>
+						</c:if>
+					   <!-- 上一页 结束-->
+						<c:forEach begin="1" end="${pageBean.totalpage}" var="pageIndex">
+							<c:if test="${pageBean.pageIndex!=pageIndex}">
+								
+						             <li><a href="javascript:goPage('${pageIndex}');">${pageIndex}</a></li> 
+							</c:if>
+					   <!-- 遍历的时候page和pageIndex相等，高亮显示 -->
+							<c:if test="${pageBean.pageIndex==pageIndex}">
+							  
+							  <li class="active"><a href="javascript:goPage('${pageIndex}');">${pageIndex}</a></li>
+							</c:if>
 						</c:forEach>
+						<!-- 下一页开始   -->
+						<c:if test="${pageBen.pageIndex==pageBean.totalpage }">
+							<li class="disabled"><a href="javascript:void(0)" aria-label="Next">
+							 <span aria-hidden="true">&raquo;</span>
+							</li>
+						</c:if>
+						<c:if test="${pageBen.pageIndex!=pageBean.totalpage}">
+								 <li>
+									<a href="javascript:goPage('${pageBean.pageIndex+1 }');"
+										aria-label="Next"> 
+								    <span aria-hidden="true">&raquo;</span>
+									</a>
+								 </li>
+						</c:if>
+						<!-- 下一页结束   -->
 					</ul>
-					<div class="clearfix"></div>
-				</div>
-	
-			
-	
-
-
-
+					</nav>
+			    	</div>    
+			<!-- 分页结束 -->
 <div style="height:100px"></div>
 
 <div class="sp">
@@ -216,7 +240,7 @@
 						手机靓淘
 					</li>
 					<li>
-						<img src="${ctx }/resources/front/img/98.png"/>
+						<img src="${ctx  }/resources/front/img/98.png"/>
 					</li>
 				</ul>
 			</div>
@@ -280,20 +304,5 @@
 			COPYRIGHT 2010-2017 北京创锐文化传媒有限公司 JUMEI.COM 保留一切权利. 客服热线：400-123-888888<br /> 
 			京公网安备 110101020011226|京ICP证111033号|食品流通许可证 SP1101051110165515（1-1）|营业执照
 		</div>
-<script type="text/javascript">
-    //hover 触发两个事件，鼠标移上去和移走
-    //mousehover 只触发移上去事件
-    $(".top-nav ul li").hover(function(){
-        $(this).addClass("hover").siblings().removeClass("hover");
-        $(this).find("li .nav a").addClass("hover");
-        $(this).find(".con").show();
-    },function(){
-        //$(this).css("background-color","#f5f5f5");
-        $(this).find(".con").hide();
-        //$(this).find(".nav a").removeClass("hover");
-        $(this).removeClass("hover");
-        $(this).find(".nav a").removeClass("hover");
-    })
-</script>
 </body>
 </html>
