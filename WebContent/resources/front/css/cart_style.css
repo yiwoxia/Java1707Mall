@@ -313,7 +313,7 @@ a {
 	color: white;
 	background: #F41443;
 	text-align: center;
-	padding: 10px 50px 10px 50px;
+	padding: 10px 41px 10px 41px;
 }
 .blank{
 	width: 1000px;
@@ -329,7 +329,7 @@ a {
 			padding-bottom: 25px;
 		}
 		.sp1{
-			width: 160px;
+			width: 250px;
 			height: 52px;
 			background-image: url(../img/you.png);
 			background-repeat: no-repeat;
@@ -338,7 +338,7 @@ a {
 			float: left;
 		}
 		.sp2{
-			width: 160px;
+			width: 250px;
 			height: 52px;
 			background-image: url(../img/te.png);
 			background-repeat: no-repeat;
@@ -347,7 +347,7 @@ a {
 			float: left;
 		}
 		.sp3{
-			width: 160px;
+			width: 250px;
 			height: 52px;
 			background-image: url(../img/109.png);
 			background-repeat: no-repeat;
@@ -356,7 +356,7 @@ a {
 			float: left;
 		}
 		.sp4{
-			width: 160px;
+			width: 250px;
 			height: 52px;
 			background-image: url(../img/7tian.png);
 			background-repeat: no-repeat;

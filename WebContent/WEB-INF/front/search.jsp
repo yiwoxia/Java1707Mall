@@ -52,7 +52,7 @@
 										<a style="text-decoration: none;" href="${ctx }/search/search.shtml?categoryId=${child.id}&name=${child.name }">${child.name }</a>
 										<%-- <span style="margin: 0 5px; color: rgb(244,20,67);">${child.name }</span> --%>
 									</c:if>
-								</c:forEach>
+					</c:forEach>
 				</ul>
 			</c:forEach>
 		<div class="clearfix"></div>
@@ -124,7 +124,7 @@
 					</nav>
 			    	</div>    
 			<!-- 分页结束 -->
-<div style="height:100px"></div>
+
 
 <div class="sp">
 			<div class="sp1">

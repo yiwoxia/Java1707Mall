@@ -28,7 +28,7 @@ public class SearchController {
 		if (pageIndex == null) {
 			pageIndex = 1;
 		}
-		pageSize = 15; 
+		pageSize = 9; 
 		List<Categrory> parentList = categoryService.fingAllCategoryParent();
 		model.addAttribute("parentList",parentList);
 		List<Categrory> chilbList = categoryService.findAllChildCategory();
