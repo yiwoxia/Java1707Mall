@@ -38,6 +38,7 @@
 				window.location.href="${ctx}/cart/delCart.shtml?productId="+productId;
 			}
 		}
+
 		</script>
 	</head>
 
@@ -190,7 +191,7 @@
 					</li>
 					<li style="margin-left: 8px;margin-right: 265px;">全选</li>
 					<li style="margin-left: 265px;margin-right: 18px;">总金额（已免运费）：<span style="color: #F41443;">¥${buyCartVO.totalPrice}</span></li>
-					<li class="total_right"><a href="">立即结算</a></li>
+					<li class="total_right"><a href="${ctx}/order/oredeS.shtml">立即结算</a></li>
 				</ul>
 			</div>
 					<div class="sp">
