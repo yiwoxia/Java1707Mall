@@ -13,8 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.JsonParseException;
 import com.situ.mall.pojo.Product;
 import com.situ.mall.service.IProductService;
 import com.situ.mall.vo.BuyCartVO;
@@ -26,12 +29,9 @@ public class CarController {
 
 	@Autowired
 	private IProductService productService;
-	
-	@RequestMapping("/addCart")
-	public String addCart(Integer productId, Integer amount, Model model,HttpServletRequest request, HttpServletResponse response){
-
-		System.out.println("productId:" + productId);
-		System.out.println("amount:" + amount);
+	//购物车减
+	@RequestMapping("/cart")
+	public String cart(Model model,HttpServletRequest request){
 		
 		//springmvc
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -46,6 +46,56 @@ public class CarController {
 				if ("buy_cart_cookie".equals(cookie.getName())) {
 					//之前已经有购物车
 					//"{\"items\":[{\"product\":{\"id\":45},\"amount\":1}],\"productId\":45}"
+					//存在buy_cart_cookie
+					String value = cookie.getValue();
+						try {
+							buyCartVO = objectMapper.readValue(value, BuyCartVO.class);
+						} catch (JsonParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (JsonMappingException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					
+				}
+			}
+		}
+		
+		//放到域对象中返回到前端展示的这个购物车，需要将Product对象填满数据才行
+		List<CartItemVO> items = buyCartVO.getItems();
+		for (CartItemVO item : items) {
+			Product product = productService.findById(item.getProduct().getId());
+			item.setProduct(product);
+		}
+		model.addAttribute("buyCartVO",buyCartVO);
+		return "cart";
+		
+	}
+	//购物车加
+	@RequestMapping("/addCart")
+	public String addCart(Integer productId, Integer amount, Model model,HttpServletRequest request, HttpServletResponse response){
+
+		System.out.println("productId:" + productId);
+		System.out.println("amount:" + amount);
+		
+		//springmvc
+		ObjectMapper objectMapper = new ObjectMapper();
+		//只有对象里面不是null的才转换
+		objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+		
+		BuyCartVO buyCartVO = null;
+		Cookie[] cookies = request.getCookies();
+		//遍历cookies 查找buy_cart_cookie 不创建buyCart
+		if (null != cookies && cookies.length != 0) {
+			for (Cookie cookie : cookies) {
+				if ("buy_cart_cookie".equals(cookie.getName())) {
+					//之前已经有购物车
+					//"{\"items\":[{\"product\":{\"id\":45},\"amount\":1}],\"productId\":45}"
+					//存在buy_cart_cookie
 					String value = cookie.getValue();
 					try {
 						buyCartVO = objectMapper.readValue(value, BuyCartVO.class);
@@ -74,7 +124,6 @@ public class CarController {
 			CartItemVO cartItemVO = new CartItemVO();
 			cartItemVO.setProduct(product);
 			cartItemVO.setAmount(amount);
-			
 			buyCartVO.addItem(cartItemVO);
 			buyCartVO.setProductId(productId);
 			
@@ -104,7 +153,87 @@ public class CarController {
 			item.setProduct(product);
 		}
 		model.addAttribute("buyCartVO",buyCartVO);
-		return "cart";
+		return "redirect:cart.shtml";
 		
 	}
+	
+	//删除购物车的商品
+		@RequestMapping("/delCart")
+		private String delCart(Integer productId, Integer amount, HttpServletRequest request, Model model, HttpServletResponse response) {
+		
+			BuyCartVO buyCartVO = null;
+			
+			//springmvc
+			ObjectMapper objectMapper = new ObjectMapper();
+			
+			//获得cookie
+			Cookie[] cookies = request.getCookies();
+			//遍历cookies 查找buy_cart_cookie 不创建buyCart
+			if (null != cookies && cookies.length != 0) {
+				for (Cookie cookie : cookies) {
+					if ("buy_cart_cookie".equals(cookie.getName())) {
+						//之前已经有购物车
+						//"{\"items\":[{\"product\":{\"id\":45},\"amount\":1}],\"productId\":45}"
+						//存在buy_cart_cookie
+						String value = cookie.getValue();
+						try {
+							buyCartVO = objectMapper.readValue(value, BuyCartVO.class);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+			
+			if (null != productId) {
+				List<CartItemVO> cartItems = buyCartVO.getItems();
+				if (null != cartItems) {
+					a : for (CartItemVO item : cartItems) {
+						if (productId == item.getProduct().getId()) {
+							Product product = item.getProduct();
+							cartItems.remove(item);
+							break a;
+						}
+					}
+				/*for (CartItemVO cartItem : cartItems) {
+					Product productTemp = productService.findById(cartItem.getProduct().getId());
+					Product product = new Product();
+					product.setStock(productTemp.getStock());
+					product.setPrice(productTemp.getPrice());
+					cartItem.setProduct(product);
+					buyCartVO.addItem(cartItem);
+				}*/
+				//把buyCart以json加入到cookie
+				StringWriter stringWriter = new StringWriter();
+				try {
+					objectMapper.writeValue(stringWriter, buyCartVO);
+				} catch (JsonGenerationException e) {
+					
+					e.printStackTrace();
+				} catch (JsonMappingException e) {
+					
+					e.printStackTrace();
+				} catch (IOException e) {
+					
+					e.printStackTrace();
+				}
+				//将购物车JSon加入到cookie
+				Cookie cookie = new Cookie("buy_cart_cookie", stringWriter.toString());
+				//设置默认的cookie存储的时间
+				cookie.setMaxAge(60 * 60 *24);
+				//设置cookie的路径
+				cookie.setPath("/");
+				//将cookie发送到浏览器
+				response.addCookie(cookie);
+			}
+		}
+			//放到域对象中返回到前端展示的这个购物车，需要将Product对象填满数据才行
+			List<CartItemVO> items = buyCartVO.getItems();
+			for (CartItemVO item : items) {
+				Product product = productService.findById(item.getProduct().getId());
+				item.setProduct(product);
+			}
+			return "redirect:cart.shtml";
+			
+		}
 }

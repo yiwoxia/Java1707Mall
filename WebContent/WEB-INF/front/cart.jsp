@@ -10,25 +10,33 @@
 		<link rel="stylesheet" href="${ctx}/resources/front/css/cart_style.css" />
 		<script type="text/javascript" src="${ctx }/resources/front/js/jquery.js"></script>
 		<script type="text/javascript">
-		function submite() {
+		function submite(productId) {
 			var num = $("#num").val();
-			if (num == 1) {
-				num = 1;
-			} else {
-				num--;
+			num --;
+			if(num == 0){
+				delCart(productId);
+				return
 			}
 			$("#num").val(num)
+			window.location.href="${ctx}/cart/addCart.shtml?productId="+productId+"&amount=-1";
 		}
-		function add(){
+		function add(productId){
 			var num = $("#num").val();
-			if(num == "${cartItemVO.amount}"){
-				num = "${cartItemVO.amount}";
+			if(num == "${product.stock}"){
+				num = "${product.stock}";
 				alert("只能购买"+num+"件")
 				return;
 			}else{
 				num++;
 			}
 			$("#num").val(num)
+			window.location.href="${ctx}/cart/addCart.shtml?productId="+productId+"&amount=1";
+		}
+		function delCart(productId) {
+			var isDel = confirm("确定要删除？");
+			if (isDel) {
+				window.location.href="${ctx}/cart/delCart.shtml?productId="+productId;
+			}
 		}
 		</script>
 	</head>
@@ -154,9 +162,9 @@
 							</span>
 						</li>
 						<li class="num_select">
-							<input class="car_ul_btn1" type="button" onclick="submite()" value="-" />
+							<input class="car_ul_btn1" type="button" onclick="submite(${cartItemVO.product.id})" value="-" />
 							<input class="car_ul_text" type="text" placeholder="1" id="num" value="${cartItemVO.amount}" />
-							<input class="car_ul_btn2" type="button" onclick="add()" value="+" />
+							<input class="car_ul_btn2" type="button" onclick="add(${cartItemVO.product.id})" value="+" />
 						</li>
 						<li class="money">
 							<span style="color: #F41443;">
@@ -164,7 +172,7 @@
 							</span>
 						</li>
 						<li class="delete">
-							<img src="${ctx}/resources/front/img/166.png" />
+							<img onclick="delCart(${cartItemVO.product.id})" src="${ctx}/resources/front/img/166.png" />
 						</li>
 					</ul>
 				</div>
