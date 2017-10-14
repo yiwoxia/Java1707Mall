@@ -30,7 +30,7 @@ public class LodinController {
 		if (user != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
-			System.out.println(user);
+			System.out.println("111111111111111111111111"+user);
 			return "redirect:/index.shtml";
 		}else{
 			

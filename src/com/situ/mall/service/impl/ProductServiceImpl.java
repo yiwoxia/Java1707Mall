@@ -7,7 +7,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.situ.mall.common.ServerResponse;
 import com.situ.mall.dao.ProductDao;
 import com.situ.mall.pojo.Product;
 import com.situ.mall.service.IProductService;
@@ -41,8 +43,7 @@ public class ProductServiceImpl implements IProductService {
 		pageBean.setTotalCount(totalCount);
 		List<Product> list = productDao.pageList(pageIndex, pageSize);
 		pageBean.setList(list);
-		System.out.println("---------------------------"+list);
-		System.out.println("+++++++++++++++++++++++++++"+pageBean);
+		
 		return pageBean;
 	}
 
@@ -71,12 +72,17 @@ public class ProductServiceImpl implements IProductService {
 	
 	//添加
 	@Override
-	public boolean addProduct(Product product) {
-		int result = productDao.addProduct(product);
-		if (result > 0) {
-			return true;
-		} else {
-			return false;
+	@ResponseBody
+	public ServerResponse addProduct(Product product) {
+		try {
+			int result = productDao.addProduct(product);
+			if (result > 0) {
+				return ServerResponse.createSuccess("添加商品成功");
+			} else {
+				return ServerResponse.createError("添加商品失败");
+			}
+		} catch (Exception e) {
+			return ServerResponse.createError("添加商品失败");
 		}
 		
 	}

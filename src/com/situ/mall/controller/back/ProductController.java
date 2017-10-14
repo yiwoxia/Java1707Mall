@@ -13,7 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.situ.mall.common.ServerResponse;
 import com.situ.mall.pojo.Categrory;
 import com.situ.mall.pojo.Product;
 import com.situ.mall.service.ICategroryService;
@@ -67,13 +69,13 @@ public class ProductController {
 		return "product_list";	
 	}
 	//添加信息
-	@RequestMapping("addProdutCont")
-	private String addProdutCont(Product product){
+	@RequestMapping("/addProdutCont")
+	@ResponseBody
+	private ServerResponse addProdutCont(Product product){
 		System.out.println("ProductController.addProdutCont()");
 		product.setCreateTime(new Date());
-		productService.addProduct(product);
-		
-		return "redirect:pageList.action";
+		ServerResponse serverResponse = productService.addProduct(product);
+		return productService.addProduct(product);
 	}
 	//跳转添加信息jsp
 	@RequestMapping("/toaddProdutct")

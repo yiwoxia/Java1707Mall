@@ -44,8 +44,7 @@
 <body>
 
 	<!-- 导航条  -->
-	<jsp:include page="../common/logo.jsp" />
-	
+	<jsp:include page="../common/header.jsp" />
 	<!-- 全局部属   -->
 	 <div class="container">
 	 	<div class="row">

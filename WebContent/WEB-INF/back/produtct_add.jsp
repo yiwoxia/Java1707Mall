@@ -13,6 +13,7 @@
 <link
 	href="${ctx}/resources/thirdlib/kindeditor/themes/default/default.css"
 	type="text/css" rel="stylesheet">
+<script type="text/javascript" src="${ctx}/resources/thirdlib/layer/layer.js"></script> 
 <script type="text/javascript" charset="utf-8"
 	src="${ctx}/resources/thirdlib/kindeditor/kindeditor-all-min.js"></script>
 <script type="text/javascript" charset="utf-8"
@@ -123,6 +124,42 @@
 		$("#" + target).html(html);
 	};
 	/* 商品分类二级联动 结束 */
+	
+	/* 进行ajax状态 */
+	function submitFrom(){
+		var options={
+			url:"${ctx}/mall/addProdutCont.action",
+			type:"post",
+			dataType:"json",
+			data:$("#add-form").serialize(),
+			success:function(data){
+				/* if(data.status == 0){
+					alert(data.msg);
+				}else{
+					alert(data.msg);
+				} */
+				if(data.status==0){
+            		layer.confirm(
+           				'添加成功',
+           				{btn:['关闭','跳转到列表界面']},
+           				function(index){
+           					layer.close(index);
+           				},
+           				function(){
+           					window.location.href = "${ctx}/mall/pageList.action";
+           				}
+           			);
+            	} else{
+            		layer.msg("添加失败");
+            	}
+			}
+		}
+		$.ajax(options)
+	};
+	/*清空表单*/
+	function clearFrom(){
+		$("#add-form")[0].reset();
+	}
 </script>
 </head>
 <body>
@@ -152,7 +189,7 @@
 				<!-- 添加商品 开始 -->
 				<form style="margin-top: 10px;"
 					action="${ctx}/mall/addProdutCont.action" method="post"
-					enctype="multipart/form-data" id="form-add">
+					enctype="multipart/form-data" id="add-form">
 					<!-- 商品分类开始 -->
 					<div class="form-group" onmouseout="selectId()">
 						<label for="exampleInputEmail1" id="text">产品分类：&nbsp;&nbsp;&nbsp;</label>
@@ -223,7 +260,8 @@
 						<textarea style="width: 900px; heighjt: 300px;" name="detail"></textarea>
 					</div>
 
-					<button type="submit" class="btn btn-primary">Submit</button>
+					<button type="button" class="btn btn-primary" onclick="submitFrom()">添加商品</button>
+					<button type="button" class="btn btn-primary" onclick="clearFrom()">清空表单</button>
 				</form>
 				<!-- 添加学生 结束 -->
 			</div>

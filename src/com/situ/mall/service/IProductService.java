@@ -3,6 +3,7 @@ package com.situ.mall.service;
 import java.util.List;
 import java.util.Map;
 
+import com.situ.mall.common.ServerResponse;
 import com.situ.mall.pojo.Product;
 import com.situ.mall.vo.PageBean;
 import com.situ.mall.vo.SearchCondition;
@@ -25,7 +26,7 @@ public interface IProductService {
 	 * 添加商品
 	 * @param product
 	 */
-	public boolean addProduct(Product product);
+	public ServerResponse addProduct(Product product);
 	/**
 	 * 分页有条件
 	 * @param pageIndex

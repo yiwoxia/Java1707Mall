@@ -27,7 +27,7 @@
 			</div>
 			<div class="right">
 				<div class="car">
-					<a class="car_pic" href="cart.html" target="_blank">去购物车结算</a>
+					<a class="car_pic"  href="${ctx }/cart/cart.shtml" target="_blank">去购物车结算</a>
 				</div>
 				<div class="narrow"></div>
 			</div>
