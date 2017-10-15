@@ -36,9 +36,11 @@
 	}
 </style>
 <script type="text/javascript">
-	var urlPRC="${pageContext.request.contextPath}";
-</script>
-<script type="text/javascript" src="${ctx}/resources/js/product-list-js.js">
+	/* 用于高级查询分页 */
+	function goPage(pageIndex1) {
+		$("#pageIndex1").val(pageIndex1);
+		$("#a").submit();
+	}
 </script>
 </head>
 <body>
