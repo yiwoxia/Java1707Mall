@@ -288,9 +288,9 @@ em {
 .checkout-option-list li:hover {
 	background:#f3f3f3
 }
-.checkout-option-list li input {
+/* .checkout-option-list li input {
 	display:none 
-}
+} */
 .checkout-option-list li p {
 	color:#333
 }

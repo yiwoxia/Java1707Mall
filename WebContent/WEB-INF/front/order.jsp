@@ -17,12 +17,24 @@
 	<link rel="shortcut icon" type="image/x-icon" href="${ctx }/resources/front/img/favicon.ico">
 	<link rel="stylesheet" href="${ctx}/resources/front/css/index_style.css" />
 	<link rel="stylesheet" href="${ctx}/resources/front/css/order/base.css"/>
-	<link rel="stylesheet" href="${ctx}/resources/front/css/order/home.css"/>
+	<link rel="stylesheet" href="${ctx}/resources/front/css/car/home.css"/>
 	<script type="text/javascript">
-		 function toAddorder() {
+/* 		 function toAddorder() {
 			var isSub = confirm("确定下单？");
 			if (isSub) {
 				 $("#subForms").submit();
+			}
+		}
+ */		 /* 提交订单 */
+		 function toAddorder() {
+			 var isSub = confirm("确定下单？"); 
+			
+			 if (isSub) {
+				var payType = $("input[name=selectPaymentType]:checked").val();
+				var payType = $("input[name=paymentType]").val($("input[name=selectPaymentType]:checked").val());
+				var payType = $("input[name=shippingId]").val($("input[name=selectAddress]:checked").val());
+				
+				 $("#subForm").submit();
 			}
 		}
 	</script>
@@ -139,12 +151,22 @@
 								</div>
 								<div class="box-bd">
 									<ul id="checkoutPaymentList" class="checkout-option-list clearfix J_optionList">
+									<label for="paymentTypeOnline">
 										<li class="item selected">
 											<input type="radio" name="paymentType" checked="checked" value="1">
 											<p>
 												在线支付                                <span></span>
 											</p>
 										</li>
+									</label>
+									<label for="paymentTypeOffline">
+											<li class="item selected">
+												<input id="paymentTypeOffline" type="radio" name="selectPaymentType"  value="2">
+												<p>
+													货到付款<span></span>
+												</p>
+											</li>
+									</label>
 									</ul>
 								</div>
 							</div>

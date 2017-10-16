@@ -11,14 +11,27 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
 	<meta name="renderer" content="webkit">
 	<title>我的订单</title>
+	<style type="text/css">
+	input {
+    padding: 0;
+    border: none;
+    outline: none;
+	}
+		.sp {
+    width: 1100px;
+    margin: 0 auto;
+    padding-top: 25px;
+    padding-bottom: 25px;
+	}
+	</style>
+	
 	<%@ include file="common/head.jsp" %>
 	<%@ include file="common/logo.jsp" %>
-	<link rel="stylesheet" type="text/css" href="${ctx }/resources/front/css/order.css">
 	<link rel="shortcut icon" type="image/x-icon" href="${ctx }/resources/front/img/icon/favicon.ico">
 	<link rel="stylesheet" href="${ctx}/resources/front/css/index_style.css" />
+	<link rel="stylesheet" type="text/css" href="${ctx }/resources/front/css/car/home.css"> 
 	<link rel="stylesheet" type="text/css" href="${ctx }/resources/front/css/order/base.css">
-	<link rel="stylesheet" type="text/css" href="${ctx }/resources/front/css/order/home.css">
-</head>
+	</head>
 <body>
 
 
@@ -33,7 +46,7 @@
 						<!-- 收货地址 -->
 						<div class="xm-box">
 							<div class="box-hd ">
-								<h2 class="title">收货地址</h2>
+								<h2 class="title">订单号:${orderNo }</h2>
 								<!---->
 							</div>
 							<div class="box-bd">
@@ -43,10 +56,9 @@
 											<strong class="itemConsignee"></strong>
 										</dt>
 										<dd>
-											<p class="tel itemTel">${orderNo }</p>
-											<p class="itemRegion">${totalPrice }&nbsp;&nbsp;</p>
+											<h2 class="title">总价：${totalPrice }</h2>
 											<p class="itemStreet"></p>
-											<span class="edit-btn J_editAddr">编辑</span>
+								<span class="edit-btn J_editAddr">编辑</span>
 										</dd>
 										<dd style="display:none">
 											<input type="radio" name="Checkout[address]" class="addressId"  value="10140916720030323">
@@ -64,24 +76,33 @@
 								</div>
 								<div class="box-bd">
 									<ul id="checkoutPaymentList" class="checkout-option-list clearfix J_optionList">
-										<li class="item selected">
-											<input type="radio" name="Checkout[pay_id]" checked="checked" value="1">
-											<p>
-												<span>微信支付</span>
-											</p>
-										</li>
-										<li class="item selected">
-											<input type="radio" name="Checkout[pay_id]" checked="checked" value="1">
+										<label for="wx">
+											<li class="item selected" id="weixin" >
+												<input id="wx" type="radio" name="Checkout[pay_id]" checked="checked" value="1">
+												<p >
+													<span>微信支付</span>
+													<img style="width: 40px; height: 40px;"src="${ctx }/resources/front/img/weixin.jpg"/>
+												</p>
+											</li>
+										</label>
+										<label for="zfb">
+										<li class="item selected" id="zhifubao">
+											<input id="zfb" type="radio" name="Checkout[pay_id]"  checked="checked" value="1" >
 											<p>
 												<span>支付宝支付</span>
+												<img style="width: 40px; height: 40px;"src="${ctx }/resources/front/img/zhifubao.jpg" />
 											</p>
 										</li>
-										<li class="item selected">
-											<input type="radio" name="Checkout[pay_id]" checked="checked" value="1">
-											<p>
-												<span>银行卡支付</span>
-											</p>
-										</li>
+										</label>
+										<label for="bankIDd" >
+											<li class="item selected" id="bank">
+												<input id="bankID" type="radio" name="Checkout[pay_id]" checked="checked" value="1">
+												<p>
+													<span>银行卡支付</span>
+													<img style="width: 40px; height: 40px;"src="${ctx }/resources/front/img/yinlian.jpg"/>
+												</p>
+												
+										</label>
 									</ul>
 								</div>
 							</div>
@@ -99,10 +120,10 @@
 										<div class="checkout-price" >
 											<ul  >
 												<li style="float: right;" >
-													订单总额：<span>${totalPrice }元</span>
+													<h2>订单总额：<span>${totalPrice }元</span></h2>
 												</li>
 											</ul>
-											<button style="float: right;"  class="btn btn-primary">立即下单</button>
+											<button style="clear: right;float: right; "class="btn btn-primary">立即付款</button>
 										</div>
 										<!--  -->
 									</div>
@@ -172,6 +193,7 @@
 		</div>
 		<!--  预售提示 E-->
 
+	
 		<script id="newAddrTemplate" type="text/x-dot-template">
 			<dl class="item selected" data-isnew="true" data-consignee="{{=it.consignee}}" data-tel="{{=it.tel}}" data-province="{{=it.province}}" data-provincename="{{=it.provinceName}}" data-city="{{=it.city}}" data-cityname="{{=it.cityName}}" data-county="{{=it.county}}" data-countyname="{{=it.countyName}}" data-zipcode="{{=it.zipcode}}" data-street="{{=it.street}}" data-tag="{{=it.tag}}">
 				<dt>
@@ -190,6 +212,9 @@
 		</script>
 
 
+		</script>
+
+
 		<!-- 保险弹窗 -->
 		<!-- 保险弹窗 -->
 
@@ -200,9 +225,8 @@
 	<!--收货地址body部分结束-->
 </div>
 
-
-
-<div style="height:100px"></div>
+<!-- 
+<div style="height:100px"></div> -->
 <div class="sp">
 			<div class="sp1">
 				<p style="color: rgb(51,51,51);">品质保障</p>
