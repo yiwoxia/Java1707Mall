@@ -2,6 +2,7 @@ package com.situ.mall.controller.front;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -193,5 +194,18 @@ public class FrontOrderController {
 	 */
 	public static void setOrderNo(Long orderNo) {
 		FrontOrderController.orderNo = orderNo;
+	}
+	
+	//查看我的订单
+	@RequestMapping("/myorder")
+	public String myorder(Model model,HttpServletRequest request){
+		System.out.println("FrontOrderController.myorder()");
+		//1.获得User对象从Session中
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		List<Object> list = orderService.findorderByUser(user.getId());
+		model.addAttribute("list", list);
+		System.out.println("111111111111111111111111"+list);
+		return "myorder_show";  
 	}
 }

@@ -10,7 +10,7 @@
 	<meta name="Description" content="">
 	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
 	<meta name="renderer" content="webkit">
-	<title>确认订单</title>
+	<title>我的订单</title>
 	<%@ include file="common/head.jsp" %>
 	<%@ include file="common/logo.jsp" %>
 	<link rel="stylesheet" type="text/css" href="${ctx }/resources/front/css/order.css">

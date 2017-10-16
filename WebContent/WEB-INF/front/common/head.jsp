@@ -20,7 +20,7 @@
 						<li><a href="${ctx }/register/register.shtml" target="_blank">快速注册</a></li>
 						</c:if>
 						<li><a class="collect" href="">我的收藏</a></li>
-						<li><a class="indent" href="">我的订单</a></li>
+						<li><a class="indent" href="${ctx}/order/myorder.shtml">我的订单</a></li>
 						<li><a class="phone" href="">手机靓淘</a></li>
 						<li><a href="">我的积分</a></li>
 						<li><a href="">我的评价</a></li>

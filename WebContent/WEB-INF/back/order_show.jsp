@@ -32,7 +32,7 @@
 					<td>${orderItem.productId}</td>
 					<td>${orderItem.productName}</td>
 					<td>
-						<img alt="" src="/pic/${orderItem.productImage}" width="100" height="100">
+						<img alt="" src="${orderItem.fullUrl}" width="100" height="100">
 					</td>
 					<td>${orderItem.currentUnitPrice}</td>
 					<td>${orderItem.quantity}</td>

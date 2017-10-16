@@ -29,4 +29,10 @@ public interface OrderDao {
 	 * @return List<OrderItem>
 	 */
 	List<OrderItem> findByOrderNo(Long orderNo);
+	/**
+	 * 根据用户插订单展示订单页面
+	 * @param id
+	 * @return
+	 */
+	List<Object> findorderByUser(Integer id);
 }

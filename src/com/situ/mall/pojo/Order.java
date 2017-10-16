@@ -3,6 +3,7 @@ package com.situ.mall.pojo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 public class Order implements Serializable{
 	/**订单id*/
@@ -33,11 +34,41 @@ public class Order implements Serializable{
 	private Date createTime;
 	/**更新时间*/
 	private Date updateTime;
+	/***orderItem 集合*/
+	private List<OrderItem> orderItems;
+	/***shipping*/
+	private Shipping shipping;
 
 	public Order() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	
+	
+	public Order(Integer id, Long orderNo, Integer userId, Integer shippingId, BigDecimal payment, Integer paymentType,
+			Integer postage, Integer status, Date paymentTime, Date sendTime, Date endTime, Date closeTime,
+			Date createTime, Date updateTime, List<OrderItem> orderItems, Shipping shipping) {
+		super();
+		this.id = id;
+		this.orderNo = orderNo;
+		this.userId = userId;
+		this.shippingId = shippingId;
+		this.payment = payment;
+		this.paymentType = paymentType;
+		this.postage = postage;
+		this.status = status;
+		this.paymentTime = paymentTime;
+		this.sendTime = sendTime;
+		this.endTime = endTime;
+		this.closeTime = closeTime;
+		this.createTime = createTime;
+		this.updateTime = updateTime;
+		this.orderItems = orderItems;
+		this.shipping = shipping;
+	}
+
+
 
 	public Order(Integer id, Long orderNo, Integer userId, Integer shippingId, BigDecimal payment, Integer paymentType,
 			Integer postage, Integer status, Date paymentTime, Date sendTime, Date endTime, Date closeTime,
@@ -171,14 +202,41 @@ public class Order implements Serializable{
 		this.updateTime = updateTime;
 	}
 
+	
+	
+	public List<OrderItem> getOrderItems() {
+		return orderItems;
+	}
+
+
+
+	public void setOrderItems(List<OrderItem> orderItems) {
+		this.orderItems = orderItems;
+	}
+
+
+
+	public Shipping getShipping() {
+		return shipping;
+	}
+
+
+
+	public void setShipping(Shipping shipping) {
+		this.shipping = shipping;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", orderNo=" + orderNo + ", userId=" + userId + ", shippingId=" + shippingId
 				+ ", payment=" + payment + ", paymentType=" + paymentType + ", postage=" + postage + ", status="
 				+ status + ", paymentTime=" + paymentTime + ", sendTime=" + sendTime + ", endTime=" + endTime
-				+ ", closeTime=" + closeTime + ", createTime=" + createTime + ", updateTime=" + updateTime + "]";
+				+ ", closeTime=" + closeTime + ", createTime=" + createTime + ", updateTime=" + updateTime
+				+ ", orderItems=" + orderItems + ", shipping=" + shipping + "]";
 	}
-	
+
 	
 	
 }

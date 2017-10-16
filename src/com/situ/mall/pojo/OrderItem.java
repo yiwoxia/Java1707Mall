@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.situ.mall.constant.MallConstant;
+
 public class OrderItem implements Serializable {
 	/**订单子表id*/
 	private Integer id;
@@ -28,6 +31,11 @@ public class OrderItem implements Serializable {
 	
 	private Integer userId;
 
+	@JsonIgnore
+    public String getFullUrl() {
+		return MallConstant.SERVER_ADDRES + productImage;
+	}
+	
 	public OrderItem() {
 		super();
 		// TODO Auto-generated constructor stub

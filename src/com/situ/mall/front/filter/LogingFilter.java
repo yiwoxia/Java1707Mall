@@ -41,7 +41,7 @@ public class LogingFilter implements Filter {
 		
 		String requestURI = req.getRequestURI();
 		System.out.println(requestURI);
-		if (requestURI != null && requestURI.startsWith("/Java1707Mall/order")) {
+		if (requestURI != null && requestURI.startsWith(req.getContextPath()+"/order")) {
 			HttpSession session = req.getSession();
 			if (null != session) {
 				User user = (User) session.getAttribute("user");

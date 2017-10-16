@@ -12,29 +12,13 @@
 
 <script>
 function moreAc(orderNo){
-	alert("1234")
-	//iframe窗
 	layer.open({
 	  type: 2,
 	  title: false,
-	 // closeBtn: 0, //不显示关闭按钮
 	  shade: [0],
 	  area: ['1040px', '515px'],
-	 // offset: 'rb', //右下角弹出
-	 // time: 2000, //2秒后自动关闭
 	  anim: 2,
 	  content: ['${ctx}/orderBack/findOrderItem.action?orderNo='+orderNo, 'yes'], //iframe的url，no代表不显示滚动条
-	  /* end: function(){ //此处用于演示
-	    layer.open({
-	      type: 2,
-	      title: '很多时候，我们想最大化看，比如像这个页面。',
-	      shadeClose: true,
-	      shade: false,
-	      maxmin: true, //开启最大化最小化按钮
-	      area: ['893px', '600px'],
-	      content: '//fly.layui.com/'
-	    });
-	  } */
 	});
 }	
 		function delShipping(id) {
@@ -116,7 +100,7 @@ function moreAc(orderNo){
 										<td>
 										<fmt:formatDate value="${orders.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
 										</td>
-										<td><a href="javascript:delShipping(${shipping.id });">删除</a></td>
+										<td><a href="javascript:delShipping(${orders.id });">删除</a></td>
 										<td><a onclick="moreAc(${orders.orderNo})">详细信息</a></td>										
 									</tr>
 								</c:forEach>

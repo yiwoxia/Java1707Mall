@@ -32,5 +32,10 @@ public class OrderServiceImpl implements IOrderService {
 		int result = orderDao.add(order);
 		return result > 0 ? true : false;
 	}
+	//查看订单展示订单页面
+	@Override
+	public List<Object> findorderByUser(Integer id) {
+		return orderDao.findorderByUser(id);
+	}
 	
 }

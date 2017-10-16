@@ -27,5 +27,11 @@ public interface IOrderService {
 	 * @return boolean
 	 */
 	boolean add(Order order);
+	/**
+	 * 查看订单页面展示订单页面
+	 * @param id
+	 * @return
+	 */
+	List<Object> findorderByUser(Integer id);
 
 }
