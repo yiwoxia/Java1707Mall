@@ -6,7 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>订单详情</title>
 <%@include file="../common/head.jsp" %>
-<%@include file="../common/header.jsp" %>
 </head>
 <body>
 <table class="table">
