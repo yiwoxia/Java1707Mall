@@ -25,4 +25,8 @@
 	<select id="checkUser" parameterType="User" resultMap="userMap">
 		select <include refid="userColums"/> from user where username=#{username} and password=#{password}
 	</select>
+	<!-- 查询用户 -->
+	<select id="fandByUser" parameterType="String" resultMap="userMap">
+		select <include refid="userColums"/>  from user where username=#{username}
+	</select>
 </mapper>

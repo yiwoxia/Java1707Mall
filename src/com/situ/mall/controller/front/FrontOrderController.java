@@ -105,6 +105,7 @@ public class FrontOrderController {
 		model.addAttribute("buyCartVO",buyCartVO);
 		return "order";
 	}
+	//立即下单页面
 	@RequestMapping("/addOrder")
 	private String addOrder(Order order,HttpServletRequest request, Model model,HttpServletResponse response){
 		System.out.println(order);

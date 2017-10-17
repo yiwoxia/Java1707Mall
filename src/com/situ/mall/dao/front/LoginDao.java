@@ -10,6 +10,13 @@ public interface LoginDao {
 	 * @return User
 	 */
 	public User checkUser(User user);
+	
+	/**
+	 * 查询用户
+	 * @param user
+	 * @return
+	 */
+	public User fandByUser(String user);
 
 }
 

@@ -8,6 +8,7 @@
 		<meta charset="UTF-8">
 		<title>靓淘网_购物车</title>
 		<link rel="stylesheet" href="${ctx}/resources/front/css/cart_style.css" />
+		<link rel="stylesheet" href="${ctx}/resources/front/css/login_layer_style.css" />
 		<script type="text/javascript" src="${ctx }/resources/front/js/jquery.js"></script>
 		<script type="text/javascript">
 		function submite(productId) {
@@ -40,42 +41,23 @@
 		}
 
 		</script>
+		
+<style type="text/css">
+	.logins{
+		width:365px;
+		height:100px;
+		display:none;
+		margin: 0 auto;
+	}
+</style>
+		
 	</head>
 
 	<body>
-		<div class="bg_color">
-			<div class="top_center">
-				<div class="left">
-					<span class="wel">欢迎来到靓淘网！</span>
-				</div>
-				<div class="right">
-					<ul>
-						<li>
-							<a class="login" href="login.html" target="_blank">请登录</a>
-						</li>
-						<li>
-							<a href="register.html" target="_blank">快速注册</a>
-						</li>
-						<li>
-							<a class="collect" href="">我的收藏</a>
-						</li>
-						<li>
-							<a class="indent" href="">我的订单</a>
-						</li>
-						<li>
-							<a class=phone href="">手机靓购</a>
-						</li>
-						<li>
-							<a href="">我的积分</a>
-						</li>
-						<li>
-							<a href="">我的评价</a>
-						</li>
-					</ul>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
+	
+		<!-----------------------1.top-------------------->
+		<jsp:include page="../front/common/head.jsp" />
+		
 		<div class="logo_center">
 			<div class="left">
 				<img class="logo_img"src="${ctx}/resources/front/img/LOGO.png" />
@@ -191,7 +173,8 @@
 					</li>
 					<li style="margin-left: 8px;margin-right: 265px;">全选</li>
 					<li style="margin-left: 265px;margin-right: 18px;">总金额（已免运费）：<span style="color: #F41443;">¥${buyCartVO.totalPrice}</span></li>
-					<li class="total_right"><a href="${ctx}/order/preparedorede.shtml">立即结算</a></li>
+					 <li class="total_right"><a  href="javascript:login1()"   target="_blank">立即结算</a></li> 
+					<%-- <li class="total_right"><a href="${ctx}/order/preparedorede.shtml">立即结算</a></li> --%>
 				</ul>
 			</div>
 					<div class="sp">
@@ -373,5 +356,70 @@
 			京公网安备 110101020011226|京ICP证111033号|食品流通许可证 SP1101051110165515（1-1）|营业执照
 		</div>
 	</body>
+<div class="logins" id="login">
+			<form id="login_form">
+				<ul>
+					<li class="login_title_1">
+						<a href="">密码登录</a>
 
+					</li>
+					<li class="login_title_2">
+						<a href="">扫码登录</a>
+					</li>
+					<li>
+						<input class="login_user" type="text" name="username" placeholder="会员名/邮箱/手机号" />
+						<input class="login_password" type="password" name="password" placeholder="密码" />
+						<input class="login_btn" type="button" onclick="submitForm()" value="登录" />
+					</li>
+				</ul>
+			</form>
+</div>
+
+<script type="text/javascript">
+
+function login(){
+	layer.open({
+		type:2,//(iframe层)
+		title:'用户登录',
+		area:['365px','100px'],
+		offset:'300px',//只定义top坐标，水平保持居中
+		content:"${ctx}/order/preparedorede.shtml"
+	});
+}
+
+
+function login1(){
+	layer.open({
+		type:1,//（iframe层）
+		title:'用户登录',
+		area: ['400px', '350px'],
+		offset: '200px',//只定义top坐标，水平保持居中
+		content:$('#login')
+	});
+}
+function submitForm() {
+	var options = {
+			url:"${ctx}/login/log.shtml",
+			type:"post",
+			dataType:"json",
+			data:$("#login_form").serialize(),
+			success:function(data){
+				if(data.status == 0) {
+					parent.layer.msg(data.msg);
+					//当你在iframe页面关闭自身时
+					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+					setTimeout(function(){
+						parent.layer.close(index); //再执行关闭  
+						window.parent.location.href ="${ctx}/order/preparedorede.shtml";//刷新父页面
+					},1000);
+				} else {
+					layer.msg(data.msg);
+				} 
+			}
+	};
+	$.ajax(options);
+}
+	
+	
+</script>
 </html>

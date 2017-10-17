@@ -24,7 +24,7 @@
 						<li><a class="phone" href="">手机靓淘</a></li>
 						<li><a href="">我的积分</a></li>
 						<li><a href="">我的评价</a></li>
-						<li><a href="${ctx }/login/login.shtml" target="_blank">退出登陆</a></li>
+						<li><a class="login" href="${ctx}/loginOut/loginOut.shtml" >退出</a></li>
 					</ul>
 				</div>
 				<div class="clearfix"></div>

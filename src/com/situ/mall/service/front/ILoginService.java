@@ -11,4 +11,11 @@ public interface ILoginService {
 	 */
 	public User checkUser(User user);
 
+	/**
+	 * 查询用户名
+	 * @param user
+	 * @return
+	 */
+	public User fandByUser(String user);
+
 }

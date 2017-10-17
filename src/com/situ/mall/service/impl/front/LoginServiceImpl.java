@@ -21,5 +21,12 @@ public class LoginServiceImpl implements ILoginService{
 	public User checkUser(User user) {
 		return loginDao.checkUser(user);
 	}
+	/**
+	 * 根据Id查询用户名
+	 */
+	@Override
+	public User fandByUser(String user) {
+		return loginDao.fandByUser(user);
+	}
 	
 }

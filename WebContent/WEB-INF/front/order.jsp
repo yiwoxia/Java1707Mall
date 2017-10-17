@@ -37,7 +37,10 @@
 				 $("#subForm").submit();
 			}
 		}
+ 
+
 	</script>
+
 </head>
 <body>
 
@@ -294,7 +297,7 @@
 						<div class="checkout-confirm">
 
 							<a href="#" class="btn btn-lineDakeLight btn-back-cart">返回购物车</a>
-							<button  onclick="toAddorder()" class="btn btn-primary">立即下单</button>
+							<button  onclick="toAddorder()" class="btn btn-primary">立即下单</button> 
 							<%-- <a href="${prc }/index.shtml" class="btn btn-primary">立即下单</a> --%>
 						
 						</div>
@@ -379,13 +382,8 @@
 			</dl>
 		</script>
 
-
-
 		<!-- 保险弹窗 -->
 		<!-- 保险弹窗 -->
-
-
-
 
 		<script src="js/base.min.js"></script>
 
@@ -394,9 +392,6 @@
 	</div>
 	<!--收货地址body部分结束-->
 </div>
-
-
-
 <div style="height:100px"></div>
 <div class="sp">
 			<div class="sp1">
@@ -576,9 +571,6 @@
 			COPYRIGHT 2010-2017 北京创锐文化传媒有限公司 JUMEI.COM 保留一切权利. 客服热线：400-123-888888<br /> 
 			京公网安备 110101020011226|京ICP证111033号|食品流通许可证 SP1101051110165515（1-1）|营业执照
 		</div>
-
-
-
-
 </body>
+
 </html>
