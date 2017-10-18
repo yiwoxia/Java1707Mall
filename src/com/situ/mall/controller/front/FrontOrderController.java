@@ -209,4 +209,17 @@ public class FrontOrderController {
 		System.out.println("111111111111111111111111"+list);
 		return "myorder_show";  
 	}
+	
+	//添加地址
+		@RequestMapping(value="/add")
+		public String add(Shipping shipping){
+			shippingService.addShipping(shipping);
+			return "add_shipping";
+			
+		}
+		@RequestMapping(value="/addShipping")
+		public String addShipping(){
+			return "redirect:pageLists.action";
+			
+		}
 }

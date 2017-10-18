@@ -13,11 +13,12 @@
 	<title>确认订单</title>
 	<%@ include file="common/head.jsp" %>
 	<%@ include file="common/logo.jsp" %>
-	<link rel="stylesheet" type="text/css" href="${prc }/resources/front/css/order.css">
 	<link rel="shortcut icon" type="image/x-icon" href="${ctx }/resources/front/img/favicon.ico">
 	<link rel="stylesheet" href="${ctx}/resources/front/css/index_style.css" />
 	<link rel="stylesheet" href="${ctx}/resources/front/css/order/base.css"/>
 	<link rel="stylesheet" href="${ctx}/resources/front/css/car/home.css"/>
+	<link rel="stylesheet" href="${ctx}/resources/front/css/login_style.css" />
+	<script type="text/javascript" src="${ctx}/resources/thirdlib/layer/layer.js"></script>   
 	<script type="text/javascript">
 /* 		 function toAddorder() {
 			var isSub = confirm("确定下单？");
@@ -37,8 +38,18 @@
 				 $("#subForm").submit();
 			}
 		}
- 
 
+ function add(){
+		layer.open({
+		type: 2 ,//Page层类型
+		 area: ['350px', '600px'],
+		 shade: 0.6 ,//遮罩透明度
+		maxmin: true, //允许全屏最小化
+		 anim: 1, //0-6的动画形式，-1不开启
+		 content:"${ctx}/order/add.action"
+
+		});
+	}
 	</script>
 
 </head>
@@ -85,7 +96,7 @@
 									</c:forEach>
 									<div class="item use-new-addr"  id="J_useNewAddr" data-state="off">
 										<span class="iconfont icon-add"><img src="${ctx}/resources/front/img/add_cart.png" /></span>
-										使用新地址
+										<a href="javascript:add()">使用新地址</a>
 									</div>
 								</div>
 								<input type="hidden" name="newAddress[type]" id="newType" value="common">
@@ -385,10 +396,7 @@
 		<!-- 保险弹窗 -->
 		<!-- 保险弹窗 -->
 
-		<script src="js/base.min.js"></script>
-
-		<script type="text/javascript" src="js/address_all.js"></script>
-		<script type="text/javascript" src="js/checkout.min.js"></script>
+	
 	</div>
 	<!--收货地址body部分结束-->
 </div>
@@ -572,5 +580,42 @@
 			京公网安备 110101020011226|京ICP证111033号|食品流通许可证 SP1101051110165515（1-1）|营业执照
 		</div>
 </body>
+<script type="text/javascript">
 
+
+
+/* function login1(){
+	layer.open({
+		type:1,//（iframe层）
+		title:'用户登录',
+		area: ['400px', '350px'],
+		offset: '200px',//只定义top坐标，水平保持居中
+		content:$('#login')
+	});
+}
+function submitForm() {
+	var options = {
+			url:"${ctx}/login/log.shtml",
+			type:"post",
+			dataType:"json",
+			data:$("#login_form").serialize(),
+			success:function(data){
+				if(data.status == 0) {
+					parent.layer.msg(data.msg);
+					//当你在iframe页面关闭自身时
+					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+					setTimeout(function(){
+						parent.layer.close(index); //再执行关闭  
+						window.parent.location.href ="${ctx}/order/preparedorede.shtml";//刷新父页面
+					},1000);
+				} else {
+					layer.msg(data.msg);
+				} 
+			}
+	};
+	$.ajax(options);
+} */
+	
+	
+</script>
 </html>

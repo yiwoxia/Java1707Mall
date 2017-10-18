@@ -22,5 +22,11 @@ public class ShippingServiceImpl implements IShippingService{
 		// TODO Auto-generated method stub
 		return shippingDao.findByUserId(id);
 	}
+	//添加地址
+	@Override
+	public boolean addShipping(Shipping shipping) {
+		int i = shippingDao.addShipping(shipping);
+		return i>0 ? true :false;
+	}
 
 }

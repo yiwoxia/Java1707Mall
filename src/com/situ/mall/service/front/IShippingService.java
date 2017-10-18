@@ -12,5 +12,10 @@ public interface IShippingService {
 	 */
 
 	public List<Shipping>  findByUserId(Integer id);
+	/**
+	 * 添加地址
+	 * @param shipping
+	 */
+	public boolean addShipping(Shipping shipping);
 
 }

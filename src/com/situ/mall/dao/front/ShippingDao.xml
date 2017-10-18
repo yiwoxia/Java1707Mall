@@ -28,5 +28,10 @@
 	<select id="findByUserId" parameterType="Integer" resultMap="ShippingMap">
 		SELECT <include refid="shippingColums"></include> FROM shipping WHERE user_id=#{userId};
 	</select>
+	<!-- 添加 -->
+	<insert id="addShipping" parameterType="Shipping" >
+	 insert into shipping(user_id,receiver_name,receiver_phone,receiver_mobile,receiver_province,receiver_city,receiver_district,receiver_address,receiver_zip,create_time,update_time)
+	 values(#{userId},#{receiverName},#{receiverPhone},#{receiverMobile},#{receiverProvince},#{receiverCity},#{receiverDistrict},#{receiverAddress},#{receiverZip},now(),now())
+	</insert>
 
 </mapper>
