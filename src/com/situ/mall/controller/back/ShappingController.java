@@ -17,7 +17,6 @@ public class ShappingController {
 	private IShappingService shappingService;
 	
 	//分页查询
-
 	@RequestMapping(value="/pageLists")
 	public ModelAndView  pageList(String pageIndex, String pageSize,ModelAndView modelAndView) {
 		int pageIndex1 = 1;

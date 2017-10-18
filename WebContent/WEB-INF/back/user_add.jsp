@@ -8,8 +8,6 @@
 <%@include file="../common/head.jsp" %>
 </head>
 <body>
-	<!-- 导航条  -->
-	<jsp:include page="../common/header.jsp" />
 	  <div class="row">
 		        <div class="col-md-2">
 		            <div class="list-group">

@@ -16,5 +16,11 @@ public interface IRegisterService {
 	 * @return
 	 */
 	public boolean checkUsername(String username);
+	/**
+	 * 激活用户状态
+	 * @param activeCode
+	 * @return
+	 */
+	public boolean setStatus(String activeCode);
 
 }

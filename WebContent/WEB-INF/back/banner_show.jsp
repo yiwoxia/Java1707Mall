@@ -65,7 +65,7 @@
 			<div class="col-md-10">
 				<ul class="nav nav-tabs">
 					<li role="presentation" class="active"><a href="javascript:void(0)">广告图管理</a></li>
-				    <li role="presentation"><a href="${prc }/banner/toAddBanner.action">添加广告图</a></li>
+				    <li role="presentation"><a href="${ctx }/banner/toAddBanner.action">添加广告图</a></li>
 				</ul>
 				<!-- 查询条件 开始 -->
 				<form id="searchForm" action="${prc }/product/pageListByContidition.action" method="post" class="form-inline" style="float: left; margin-top: 10px;margin-bottom: 10px;" >

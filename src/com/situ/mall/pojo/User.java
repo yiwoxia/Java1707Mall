@@ -20,6 +20,10 @@ public class User implements Serializable{
 	private String answer;
 	/**角色0-管理员,1-普通用户*/
 	private Integer role;
+	/**状态*/
+	private Integer status;
+	/**激活码*/
+	private String activeCode;
 	/**创建时间*/
 	private Date createTime;
 	/**最后一次更新时间*/
@@ -32,6 +36,29 @@ public class User implements Serializable{
 
 	
 	
+	
+	
+	public User(Integer id, String username, String password, String email, String phone, String question,
+			String answer, Integer role, Integer status, String activeCode, Date createTime, Date updateTime) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.phone = phone;
+		this.question = question;
+		this.answer = answer;
+		this.role = role;
+		this.status = status;
+		this.activeCode = activeCode;
+		this.createTime = createTime;
+		this.updateTime = updateTime;
+	}
+
+
+
+
+
 	public User(Integer id, String username, String password, String email, String phone, String question,
 			String answer, Integer role, Date createTime, Date updateTime) {
 		super();
@@ -45,6 +72,32 @@ public class User implements Serializable{
 		this.role = role;
 		this.createTime = createTime;
 		this.updateTime = updateTime;
+	}
+
+
+	
+	
+
+	public Integer getStatus() {
+		return status;
+	}
+
+
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+
+
+	public String getActiveCode() {
+		return activeCode;
+	}
+
+
+
+	public void setActiveCode(String activeCode) {
+		this.activeCode = activeCode;
 	}
 
 
@@ -129,15 +182,11 @@ public class User implements Serializable{
 		this.updateTime = updateTime;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + ", phone="
-				+ phone + ", question=" + question + ", answer=" + answer + ", role=" + role + ", createTime="
-				+ createTime + ", updateTime=" + updateTime + "]";
+				+ phone + ", question=" + question + ", answer=" + answer + ", role=" + role + ", status=" + status
+				+ ", activeCode=" + activeCode + ", createTime=" + createTime + ", updateTime=" + updateTime + "]";
 	}
-	
-	
 	
 }

@@ -22,10 +22,14 @@
 	</resultMap>
 	<!-- 注册用户 -->
 	<insert id="registerUser" parameterType="User">
-		insert into user (username,password,role,create_time,update_time) values (#{username},#{password},#{role},now(),now());
+		insert into user (username,password,email,role,status,active_code,create_time,update_time) values (#{username},#{password},#{email},#{role},#{status},#{activeCode},now(),now());
 	</insert>
 	<!-- 检测用户名是否存在 -->
 	<select id="checkUsername" parameterType="String" resultMap="userMap">
 		select <include refid="userColums"/> from user where username=#{username};
 	</select>
+	<!-- 激活用户状态 -->
+	<update id="setStatus" parameterType="String">
+		update user set status=1 where active_code=#{activeCode} 
+	</update>
 </mapper>

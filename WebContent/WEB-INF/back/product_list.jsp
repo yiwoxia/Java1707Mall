@@ -42,44 +42,24 @@
 		$("#a").submit();
 	}
 </script>
+<script type="text/javascript">  
+       var urlPRC="${pageContext.request.contextPath}";  
+</script>  
+<script type="text/javascript" src="${ctx}/resources/js/product-list-js.js"></script>
 </head>
 <body>
 
-	<!-- 导航条  -->
-	<jsp:include page="../common/header.jsp" />
-	<!-- 全局部属   -->
-	 <div class="container">
-	 	<div class="row">
-	 		<!-- 左边栏开始 -->
-	 		<div class="col-md-2" >
-	 		   <ul class="nav nav-pills nav-stacked" >
-   					<li role="presentation" class="active"><a href="javascript:void(0)" >商品管理</a></li>
-				    <li role="presentation"  ><a href="${ctx}/mall/toaddProdutct.action" method="post">添加商品</a></li> 
-               </ul>
-	 		</div>
-	 		<!-- 左边导航栏结束  -->
-			<!-- 右边栏开始  -->
-	 		<div class="col-md-10">
-	 		      
-                <ul class="nav nav-tabs">
-					<li role="presentation" class="active"><a href="javascript:void(0)">商品管理</a></li>
-					<li role="presentation"><a href="${ctx}/mall/toaddProdutct.action" method="post">添加商品</a></li>
-				</ul>
-		  <!-- 右边栏结束结束	 -->	
-		  
-		  	
  <!--  多条件查询开始  -->
 		  <form action="${ctx}/mall/seacherByCondition.action" method="post" class="form-inline" id="a" style="margin-left: 90px;" >
 
 				<!-- 用于查找+分页 记录反的页数 -->
 					<input type="hidden" name="pageIndex" id="pageIndex" /> 
-					<div class="form-group"  >
+					<div class="form-group">
 						<label for="exampleInputName2">商品名称</label>
 					    <input type="text" name="product.name" value="${condition.product.name }" class="form-control" id="exampleInputName2" placeholder="商品名称">
-				 	</div>
 						<button type="submit" class="btn btn-default">搜索</button>
 						<button type="reset" class="btn btn-default">重置</button>
-					</div>
+				 	</div>
 			</form> 		
  <!--  多条件查询结束 -->
  <!-- 查询条件 结束 -->

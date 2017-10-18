@@ -26,7 +26,7 @@
 	function delProduct(id) {
 		var isDel = confirm("确定删除？");
 		if (isDel) {
-			location.href="${prc }/category/delCategory.action?id=" + id;
+			location.href="${ctx }/category/delCategory.action?id=" + id;
 		}
 	}
 	
@@ -34,7 +34,7 @@
 	function updateStatus(id, status) {
 		var isUpdate = confirm("确定修改？");
 		if (isUpdate) {
-			location.href="${prc }/category/updateStatus.action?id=" + id + "&status=" + status;
+			location.href="${ctx }/category/updateStatus.action?id=" + id + "&status=" + status;
 		}
 	}
 	
@@ -42,7 +42,7 @@
 	function deleteAll() {
 		var isDel = confirm("确定删除？");
 		if (isDel) {
-		$("#delForm").attr("src", "${prc }/category/deletAll.action");
+		$("#delForm").attr("src", "${ctx }/category/deletAll.action");
 		$("#delForm").submit();
 		}
 	}
@@ -66,7 +66,7 @@
 			<div class="col-md-2" >
 				<ul class="nav nav-pills nav-stacked">
 					<li role="presentation" class="active"><a href="javascript:void(0)">分类管理</a></li>
-				    <li role="presentation"><a href="${prc }/category/toAddCategory.action">添加分类</a></li>
+				    <li role="presentation"><a href="${ctx }/category/toAddCategory.action">添加分类</a></li>
 				</ul>
 			</div>
 			<!-- 左边导航栏结束  -->
@@ -74,10 +74,10 @@
 			<div class="col-md-10">
 				<ul class="nav nav-tabs">
 					<li role="presentation" class="active"><a href="javascript:void(0)">分类管理</a></li>
-				    <li role="presentation"><a href="${prc }/category/toAddCategory.action">添加分类</a></li>
+				    <li role="presentation"><a href="${ctx }/category/toAddCategory.action">添加分类</a></li>
 				</ul>
 				<!-- 查询条件 开始 -->
-				<form id="searchForm" action="${prc }/category/pageListByCondition.action" method="post" class="form-inline" style="float: left; margin-top: 10px;margin-bottom: 10px;" >
+				<form id="searchForm" action="${ctx }/category/pageListByCondition.action" method="post" class="form-inline" style="float: left; margin-top: 10px;margin-bottom: 10px;" >
 					<!-- 用于查找+分页 记录反的页数 -->
 					<input type="hidden" name="pageIndex" id="pageIndex" />
 					<div class="form-group">
@@ -95,7 +95,7 @@
 				<!-- 查询条件 结束 -->
 					<button onclick="javascript:deleteAll()"  class="btn btn-default">批量删除</button>
 				<!-- 学生列表开始 -->
-				<form id="delForm" action="${prc }/student/deletAll.action" method="post">
+				<form id="delForm" action="${ctx }/student/deletAll.action" method="post">
 					<table class="table table-striped table-bordered table-hover" style="margin-top: 10px;" >
 						<tr>
 							<td>

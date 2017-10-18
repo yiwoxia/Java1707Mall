@@ -164,28 +164,8 @@
 </head>
 <body>
 
-	<!-- 导航条  -->
-	<jsp:include page="../common/logo.jsp" />
-	<div class="container">
-		<div class="row">
-			<!-- 左边导航栏开始  -->
-			<div class="col-md-2">
-				<ul class="nav nav-pills nav-stacked">
-					<li role="presentation"><a
-						href="${prc }/mall/pageList.action">商品管理</a></li>
-					<li role="presentation" class="active"><a
-						href="javascript:void(0)">添加商品</a></li>
-				</ul>
-			</div>
-			<!-- 左边导航栏结束  -->
 			<!-- 右边栏开始  -->
 			<div class="col-md-10">
-				<ul class="nav nav-tabs">
-					<li role="presentation"><a
-						href="${ctx }/student/pageList.action">商品管理</a></li>
-					<li role="presentation" class="active"><a
-						href="javascript:void(0)">添加商品</a></li>
-				</ul>
 				<!-- 添加商品 开始 -->
 				<form style="margin-top: 10px;"
 					action="${ctx}/mall/addProdutCont.action" method="post"
@@ -265,9 +245,6 @@
 				</form>
 				<!-- 添加学生 结束 -->
 			</div>
-			<!-- 右边栏结束  -->
-		</div>
-	</div>
 	<!-- 中间内容部分 end -->
 </body>
 </html>

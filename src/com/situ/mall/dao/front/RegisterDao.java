@@ -19,5 +19,11 @@ public interface RegisterDao {
 	 * @return User
 	 */
 	public User checkUsername(String username);
+	/**
+	 * 激活用户状态
+	 * @param activeCode
+	 * @return
+	 */
+	public int setStatus(String activeCode);
 
 }

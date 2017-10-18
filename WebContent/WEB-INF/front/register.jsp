@@ -83,7 +83,7 @@
 		<div class="banner">
 			<img class="banner_img" src="${ctx }/resources/front/img/110.png" />
 			<div class="banner_center">
-				<form action="${ctx }/register/registerUser.shtml" method="post" >
+				<form action="${ctx }/register/registerUser.shtml"  method="post" >
 					<div class="register">
 						<ul>
 							<li class="register_title_1">
@@ -96,18 +96,12 @@
 								<input class="register_user" id="username" name="username" type="text" placeholder="会员名/邮箱/手机号" />
 								<span id="usernameSpan" ></span>
 							</li>
+							<li>
+								<input class="register_user" name="email" placeholder="邮箱Email"/>
+							</li>
 							<!-- <li>
 								<input class="register_note" placeholder="短信校验码"/>
 								<input class="register_note_get" type="button" value="获取短信验证码" />
-							</li> -->
-						<!--  <li>
-								<input class="register_password" id="phone" name="phone" type="phone" placeholder="手机号" />
-							</li>
-							 <li>
-								<input class="register_password" id="question" name="question" type="question" placeholder="问题题" />
-							</li>
-							 <li>
-								<input class="register_password" id="answer" name="answer" type="answer" placeholder="答案" />
 							</li> -->
 							<li>
 								<input class="register_password" id="password" name="password" type="password" placeholder="密码" />
@@ -116,12 +110,12 @@
 								<input class="register_repassword" id="repassword" type="password" placeholder="确认密码" />
 								<span id="repasswordSpan" ></span>
 							</li>
-							<li >
-								<input class="register_finish" id="submits" type="submit" value="同意协议并注册" />
+							<li>
+								<input class="register_finish" id="sub" type="submit" value="同意协议并注册" />
 							</li>
 							<li class="register_bottom">
 								<a href=""><span style="color: #F41443;">《靓淘优选用户协议》</span></a>
-							</li> 
+							</li>
 						</ul>
 
 					</div>

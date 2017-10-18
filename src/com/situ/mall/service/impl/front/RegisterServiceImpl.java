@@ -27,5 +27,11 @@ public class RegisterServiceImpl implements IRegisterService {
 		User user = registerDao.checkUsername(username);
 		return user != null ? true:false;
 	}
+	//激活用户状态
+	@Override
+	public boolean setStatus(String activeCode) {
+		int result = registerDao.setStatus(activeCode);
+		return false;
+	}
 	
 }
