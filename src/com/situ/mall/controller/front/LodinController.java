@@ -21,22 +21,28 @@ public class LodinController {
 	private ILoginService loginService;
 	
 	@RequestMapping("login.shtml")	
-	private String login(){
-		
+	private String login(String returnUrl,Model model){
+		model.addAttribute("returnUrl",returnUrl);
 		return "login";
 	}
 	@RequestMapping("loginIn.shtml")
-	private String loginIn(User user, Model model,HttpServletRequest request){
+	private String loginIn(User user,String returnUrl, Model model,HttpServletRequest request){
 		
+		String newUrl = "index.shtml";
+		System.out.println("aa"+returnUrl+"aa");
+		if (null != returnUrl && !"".equals(returnUrl)) {
+			String contextPath = request.getContextPath();
+			newUrl = returnUrl.substring(contextPath.length() + 1, returnUrl.length());
+		}
 		user = loginService.checkUser(user);
 		if (user != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
-			System.out.println("111111111111111111111111"+user);
-			return "redirect:/index.shtml";
-		}else{
-			
-			return "redirect:/index.shtml";
+			System.out.println(user);
+			return "redirect:/"+newUrl;
+		} else {
+			model.addAttribute("error", "用户名或密码错误");
+			return "login";
 		}
 		
 	}
@@ -52,7 +58,6 @@ public class LodinController {
 			System.out.println("111111111111111111111111"+user);
 			return ServerResponse.createSuccess("登录成功");
 		}else{
-			
 			return ServerResponse.createError("登录失败");
 		}
 	}

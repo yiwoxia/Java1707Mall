@@ -30,6 +30,7 @@
 			<div class="banner_center">
 				<div class="login">
 					<form action="${ctx }/login/loginIn.shtml" method="post">
+					<input type="hidden" name="returnUrl" value="${returnUrl}"/>
 						<ul>
 							<li class="login_title_1">
 								<a href="">密码登录</a>

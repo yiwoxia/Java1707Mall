@@ -61,6 +61,15 @@
   </filter>
   <filter-mapping>
     <filter-name>LogingFilter</filter-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>*.shtml</url-pattern>
+  </filter-mapping>
+  <filter>
+    <display-name>Filter</display-name>
+    <filter-name>Filter</filter-name>
+    <filter-class>com.situ.mall.front.filter.banck.Filter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>Filter</filter-name>
+    <url-pattern>*.action</url-pattern>
   </filter-mapping>
 </web-app>

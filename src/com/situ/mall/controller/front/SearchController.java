@@ -58,6 +58,7 @@ public class SearchController {
 		Integer categoryId = condition.getProduct().getCategoryId();
 		model.addAttribute("categoryId", categoryId);
 		String name = condition.getProduct().getName();
+		System.out.println("name: " + name);
 		model.addAttribute("name", name);
 		
 		return "search";

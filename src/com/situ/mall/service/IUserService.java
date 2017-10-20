@@ -38,5 +38,11 @@ public interface IUserService {
 	 * @param user
 	 */
 	public boolean addUser(User user);
+	/**
+	 * 阿里云
+	 * @param name
+	 * @return
+	 */
+	public User checkUser(String name);
 
 }
