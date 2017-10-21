@@ -71,5 +71,12 @@ public interface IProductService {
 	 * @return
 	 */
 	public boolean updateAll(Map<Integer, Integer> map);
+	/**
+	 * 修改商品的状态ajax
+	 * @param id
+	 * @param status
+	 * @return
+	 */
+	public ServerResponse updateStatusByAjax(Integer id, Integer status);
 
 }

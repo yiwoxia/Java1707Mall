@@ -45,6 +45,12 @@
        <property name="basePackage" value="com.situ.mall.dao" />
     </bean>
     
+    <!-- 一定要放在viewResolver的前面，这样就先去找freemarker的 -->
+    <bean id="freeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/WEB-INF/ftl/" />
+        <property name="defaultEncoding" value="UTF-8" />
+    </bean>
+    
     <!-- ********************************************************************** -->
     <!-- 事务相关 -->
     <!-- 事务管理器 -->

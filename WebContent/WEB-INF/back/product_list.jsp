@@ -79,6 +79,7 @@
 				<td>库存</td>
 				<td>商品图片</td>
 				<td>状态</td>
+				<td title="上线/下线">上线/下线</td>
 				<td>创建时间</td>
 				<td>更新时间</td>	
 				<td colspan="3">操作</td>
@@ -111,7 +112,8 @@
 					<td>${product.createTime}</td>
 					<td>${product.updateTime}</td>
 					 <td><a href="javascript:void(0)" onclick="updateStatus(${product.id },${product.status });">修改状态</a></td>
-					<td><a href="${ctx}/mall/toUpdateProduct.action?id=${product.id}" method="post">修改</a>
+					 <td><a href="${ctx}/mall/toUpdateProduct.action?id=${product.id}" method="post">修改</a>
+					<td><a class="glyphicon glyphicon-retweet" href="${ctx}/mall/updateStatusOnline.action?id=${product.id }&status=${product.status }"></a></td>
 					<td><a href="javascript:deleProduct('${product.id}')" method="post" >删除</a> 
 					</td>  
 					<%-- <td><span class="glyphicon glyphicon-retweet" onclick="updateStatus(${product.id },${product.status });"></span></td>

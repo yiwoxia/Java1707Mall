@@ -82,5 +82,6 @@ public interface ProductDao {
 	 * @return
 	 */
 	public int updateAll(@Param("id")Integer id, @Param("status")Integer status);
+	public Product findproductById(Integer id);
 
 }

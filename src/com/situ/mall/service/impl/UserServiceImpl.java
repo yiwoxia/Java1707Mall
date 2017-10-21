@@ -81,5 +81,10 @@ public class UserServiceImpl implements IUserService{
 		return i>0 ? true : false;
 		
 	}
+	@Override
+	public User checkUser(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

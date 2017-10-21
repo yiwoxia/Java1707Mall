@@ -157,4 +157,12 @@ public class ProductController {
 		productService.updateStatus(product);
 		return "redirect:pageList.action";
 	}
+	
+	//修改商品的状态ajax
+	@RequestMapping("/updateStatusOnline")
+	@ResponseBody
+	private ServerResponse updateStatusByAjax(Integer id, Integer status) {
+		
+		return productService.updateStatusByAjax(id, status);
+	}
 }

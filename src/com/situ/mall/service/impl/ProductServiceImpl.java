@@ -1,19 +1,22 @@
 package com.situ.mall.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.situ.mall.common.ServerResponse;
+import com.situ.mall.constant.MallConstant;
 import com.situ.mall.dao.ProductDao;
 import com.situ.mall.pojo.Product;
 import com.situ.mall.service.IProductService;
-
+import com.situ.mall.service.IStaticPageService;
 import com.situ.mall.vo.PageBean;
 import com.situ.mall.vo.SearchCondition;
 
@@ -22,6 +25,8 @@ public class ProductServiceImpl implements IProductService {
 
 	@Resource(name="productDao")
 	private ProductDao productDao;
+	@Autowired
+	private IStaticPageService staticPageService;
 	//获取所有信息
 	@Override
 	public List<Product> finAll() {
@@ -165,5 +170,48 @@ public class ProductServiceImpl implements IProductService {
 		}
 		return result>0?true:false;
 	}
+	//修改商品的状态ajax
+	@Override
+	public ServerResponse updateStatusByAjax(Integer id, Integer status) {
+if (id == null) {
+			
+			return ServerResponse.createError("id不能为空");
+		}
+		if (status == 1) {
+			status = 2;
+		} else if (status == 2) {
+			status = 1;
+		}
+		
+		int result  = productDao.updateAll(id, status);
+		if (result < 0) {
+			return ServerResponse.createError("上线失败");
+		}
+		
+		Product product = productDao.findById(id);
+		System.out.println(product);
+		if (product == null) {
+			
+			return ServerResponse.createError("商品不能存在");
+		}
+		
+		Map root = new HashMap();
+		root.put("product", product);
+		 //按照“，”分割subImages，
+	    String subImagesStr = product.getSubImages();
+	    if (null != subImagesStr && !subImagesStr.equals("")) {
+	       String[] subImages = subImagesStr.split(",");
+	       for (int i = 0; i < subImages.length; i++) {
+	           subImages[i] = MallConstant.SERVER_ADDRES + subImages[i];
+	       }
+	       root.put("subImages", subImages);
+	}
+	    
+	    if (staticPageService.productIndex(root, id)) {
+	    	return ServerResponse.createSuccess("静态化页面修改成功");
+	    }
+	    return ServerResponse.createSuccess("静态化页面修改失败");
+	
+		}
 
 }
