@@ -14,10 +14,9 @@
 	<%@ include file="common/head.jsp" %>
 	<%@ include file="common/logo.jsp" %>
 	<link rel="shortcut icon" type="image/x-icon" href="${ctx }/resources/front/img/favicon.ico">
-	<link rel="stylesheet" href="${ctx}/resources/front/css/index_style.css" />
-	<link rel="stylesheet" href="${ctx}/resources/front/css/order/base.css"/>
-	<link rel="stylesheet" href="${ctx}/resources/front/css/car/home.css"/>
-	<link rel="stylesheet" href="${ctx}/resources/front/css/login_style.css" />
+	<link rel="stylesheet" type="text/css" href="${ctx }/resources/front/css/order.css">
+	<link rel="stylesheet" type="text/css" href="${ctx }/resources/front/css/car/order_base.css">
+	<link rel="stylesheet" type="text/css" href="${ctx}/resources/front/css/car/order_home.css">
 	<script type="text/javascript" src="${ctx}/resources/thirdlib/layer/layer.js"></script>   
 	<script type="text/javascript">
 /* 		 function toAddorder() {
@@ -50,6 +49,8 @@
 
 		});
 	}
+ 
+ 
 	</script>
 
 </head>
@@ -94,9 +95,9 @@
 											</dd>
 										</dl>
 									</c:forEach>
-									<div class="item use-new-addr"  id="J_useNewAddr" data-state="off">
+									<div class="item use-new-addr"  id="J_useNewAddr" data-state="off"   onclick="addAddress()"  ">
 										<span class="iconfont icon-add"><img src="${ctx}/resources/front/img/add_cart.png" /></span>
-										<a href="javascript:add()">使用新地址</a>
+										使用新地址
 									</div>
 								</div>
 								<input type="hidden" name="newAddress[type]" id="newType" value="common">
@@ -108,83 +109,43 @@
 								<input type="hidden" name="newAddress[zipcode]" id="newZipcode">
 								<input type="hidden" name="newAddress[tel]" id="newTel">
 								<input type="hidden" name="newAddress[tag_name]" id="newTag">
-								<!--点击弹出新增/收货地址界面start-->
-								<div class="xm-edit-addr-box" id="J_editAddrBox">
-									<div class="bd">
-										<div class="item">
-											<label>收货人姓名<span>*</span></label>
-											<input type="text" name="userAddress[consignee]" id="Consignee" class="input" placeholder="收货人姓名" maxlength="15" autocomplete='off'>
-											<p class="tip-msg tipMsg"></p>
-										</div>
-										<div class="item">
-											<label>联系电话<span>*</span></label>
-											<input type="text" name="userAddress[tel]" class="input" id="Telephone" placeholder="11位手机号" autocomplete='off'>
-											<p class="tel-modify-tip" id="telModifyTip"></p>
-											<p class="tip-msg tipMsg"></p>
-										</div>
-										<div class="item">
-											<label>地址<span>*</span></label>
-											<select name="userAddress[province]" id="Provinces" class="select-1">
-												<option>省份/自治区</option>
-											</select>
-											<select name="userAddress[city]"  id="Citys" class="select-2" disabled>
-												<option>城市/地区/自治州</option>
-											</select>
-											<select name="userAddress[county]"  id="Countys" class="select-3" disabled>
-												<option>区/县</option>
-											</select>
-											<textarea   name="userAddress[street]" class="input-area" id="Street" placeholder="路名或街道地址，门牌号"></textarea>
-											<p class="tip-msg tipMsg"></p>
-										</div>
-										<div class="item">
-											<label>邮政编码<span>*</span></label>
-											<input type="text" name="userAddress[zipcode]" id="Zipcode" class="input" placeholder="邮政编码"  autocomplete='off'>
-											<p class="zipcode-tip" id="zipcodeTip"></p>
-											<p class="tip-msg tipMsg"></p>
-										</div>
-										<div class="item">
-											<label>地址标签<span>*</span></label>
-											<input type="text" name="userAddress[tag]" id="Tag" class="input" placeholder='地址标签：如"家"、"公司"。限5个字内'  >
-											<p class="tip-msg tipMsg"></p>
-										</div>
-									</div>
-									<div class="ft clearfix">
-										<button  type="button"  class="btn btn-lineDake btn-small " id="J_editAddrCancel">取消</button>
-										<button type="button" class="btn btn-primary  btn-small " id="J_editAddrOk">保存</button>
-									</div>
-								</div>
-								<!--点击弹出新增/收货地址界面end-->
+								
 								<div class="xm-edit-addr-backdrop" id="J_editAddrBackdrop"></div>
 							</div>                </div>
 						<!-- 收货地址 END-->
 						<div id="checkoutPayment">
-							<!-- 支付方式 -->
+								<!-- 支付方式 -->
 							<div class="xm-box">
 								<div class="box-hd ">
 									<h2 class="title">支付方式</h2>
 								</div>
 								<div class="box-bd">
 									<ul id="checkoutPaymentList" class="checkout-option-list clearfix J_optionList">
-									<label for="paymentTypeOnline">
-										<li class="item selected">
-											<input type="radio" name="paymentType" checked="checked" value="1">
-											<p>
-												在线支付                                <span></span>
-											</p>
-										</li>
-									</label>
-									<label for="paymentTypeOffline">
-											<li class="item selected">
-												<input id="paymentTypeOffline" type="radio" name="selectPaymentType"  value="2">
-												<p>
-													货到付款<span></span>
-												</p>
+											<li class="item selected aaa" >
+												<label for="paymentTypeOnline">
+													<div class="payType">
+														<input id="paymentTypeOnline" type="radio" name="selectPaymentType" checked="checked" value="1">
+														<p>
+															在线支付 <span></span>
+														</p>
+														</div>
+												</label>
 											</li>
-									</label>
+											<li class="item selected aaa">
+												<label for="paymentTypeOffline">
+													<div class="payType">
+														<input id="paymentTypeOffline" type="radio" name="selectPaymentType"  value="2">
+														<p>
+															货到付款<span></span>
+														</p>
+														</div>
+												</label>
+											</li>
 									</ul>
 								</div>
+								
 							</div>
-								<!-- 支付方式 END-->
+							<!-- 支付方式 END-->
 							<div class="xm-box">
 								<div class="box-hd ">
 									<h2 class="title">配送方式</h2>
@@ -579,6 +540,62 @@
 			COPYRIGHT 2010-2017 北京创锐文化传媒有限公司 JUMEI.COM 保留一切权利. 客服热线：400-123-888888<br /> 
 			京公网安备 110101020011226|京ICP证111033号|食品流通许可证 SP1101051110165515（1-1）|营业执照
 		</div>
+		
+		
+		
+	<div id="addAddress" >
+	<form id="subAddrForm" >
+	<div class="xm-edit-addr-box" id="J_editAddrBox">
+				<div class="bd">
+					<div class="item">
+						<label>收货人姓名<span>*</span></label>
+						<input type="text" name="receiverName" id="Consignee" class="input" placeholder="收货人姓名" maxlength="15" autocomplete='off'>
+						<p class="tip-msg tipMsg"></p>
+					</div>
+					<div class="item">
+						<label>联系电话<span>*</span></label>
+						<input type="text" name="receiverPhone" class="input" id="Telephone" placeholder="11位手机号" autocomplete='off'>
+						<p class="tel-modify-tip" id="telModifyTip"></p>
+						<p class="tip-msg tipMsg"></p>
+					</div>
+					<div class="item">
+						<label>移动电话<span>*</span></label>
+						<input type="text" name="receiverMobile" class="input" id="Telephone" placeholder="11位手机号" autocomplete='off'>
+						<p class="tel-modify-tip" id="telModifyTip"></p>
+						<p class="tip-msg tipMsg"></p>
+					</div>
+					<div class="item">
+						<label>地址<span>*</span></label>
+						<select name="receiverProvince" onchange="selectCitys(this)" id="province" class="select-1">
+							<option>省份/自治区</option>
+						</select>
+						<select name="receiverCity"  id="city" onchange="selectAreas(this)" class="select-2" >
+							<option>城市/地区/自治州</option>
+						</select>
+						<select name="receiverDistrict"  id="area" class="select-3" >
+							<option>区/县</option>
+						</select>
+						<textarea   name="receiverAddress" class="input-area" id="Street" placeholder="路名或街道地址，门牌号"></textarea>
+						<p class="tip-msg tipMsg"></p>
+					</div>
+					<div class="item">
+						<label>邮政编码<span>*</span></label>
+						<input type="text" name="receiverZip" id="Zipcode" class="input" placeholder="邮政编码"  autocomplete='off'>
+						<p class="zipcode-tip" id="zipcodeTip"></p>
+						<p class="tip-msg tipMsg"></p>
+					</div>
+				</div>
+				<div class="ft clearfix">
+					<button  type="button" onclick="closeLayer()" class="btn btn-lineDake btn-small " id="J_editAddrCancel">取消</button>
+					<button type="button" onclick="subAddress()" class="btn btn-primary btn-small " id="J_editAddrOk">保存</button>
+				</div>
+			</div>
+		</form>
+			<!--点击弹出新增/收货地址界面end-->
+	<div class="xm-edit-addr-backdrop" id="J_editAddrBackdrop"></div>
+</div>
+		
+		
 </body>
 <script type="text/javascript">
 
@@ -614,8 +631,135 @@ function submitForm() {
 			}
 	};
 	$.ajax(options);
-} */
+} 
+	 */
 	
+	 /* 关闭layer  */
+		function closeLayer() {
+			layer.close(layer.index);
+		}
+
+	 
+	 /* 添加新地址  */
+		function addAddress() {
+			alert("123");
+			layer.open({
+				  type: 1,
+				  title: false,
+				  closeBtn: 0,
+				  offset: '20px',
+				  shadeClose: true,
+				  area: ['350px', '465px'],
+				  content: $('#addAddress')
+				});
+		}
+		
+		/* 添加地址  */
+		function subAddress() {
+			var options = {
+				url : "${ctx}/order/addAddress.shtml",
+				type : "post",
+				datatype : "json",
+				data : $("#subAddrForm").serialize(),
+				/* data: document.getElementById("subAddrForm").serialize(), */
+				success : function (data) {
+					if (data.status == 0) {
+					
+						layer.msg(data.msg);
+						setTimeout(function () {
+							parent.layer.closeAll();
+							//parent.layer.close(index); //再执行关闭 
+							window.parent.location.reload();
+						}, 1000)
+						
+					}else {
+							layer.msg(data.msg);
+						
+					}
+				}
+			}
+			$.ajax(options);
+		}
+
+		/* 省市县三级联动  */
+		
+		$(function() {
+	       $.ajax({
+	           url:"${ctx}/order/selectProvinces.shtml",
+	           dataType:"json",
+	           success:function(data,textStatus,ajax){
+	        	   //alert(ajax.responseText);
+	              //append_template(data, "province");
+	              var html = "<option>省份/自治区</option>";
+	              for(var i=0;i<data.length;i++){
+	                  html +="<option provinceId='"+data[i].id+"'  value='"+data[i].province+"'>"+data[i].province+"</option>";
+	              }
+	               $("#province").html(html);
+	           }
+	       });
+	   });
+	 
+	 
+function selectCitys(obj) {
+    var provinceId = $(obj).find("option:selected").attr("provinceId");
+    //清空城市下拉框中的内容，出第一项外
+    $("#city option:gt(0)").remove();
+    //清空地区下拉框中的内容，出第一项外
+    $("#area option:gt(0)").remove();
+    $.ajax({
+        url:"${ctx}/order/selectCitys.shtml",
+        data:"provinceId="+provinceId,
+        dataType:"json",
+        success:function(data,textStatus,ajax){
+     	   //alert(ajax.responseText);
+           //append_template(data, "city");
+           
+           var html = "<option>-请选择-</option>";
+           for(var i=0;i<data.length;i++){
+               html +="<option cityId='"+data[i].id+"' value='"+data[i].city+"'>"+data[i].city+"</option>";
+           }
+           $("#city").html(html);
+        }
+    });
+}
 	
+function selectAreas(obj) {
+    var cityId = $(obj).find("option:selected").attr("cityId");
+    //清空地区下拉框中的内容，出第一项外
+    $("#area option:gt(0)").remove();
+    $.ajax({
+        url:"${ctx}/order/selectAreas.shtml",
+        data:"cityId="+cityId,
+        dataType:"json",
+        success:function(data,textStatus,ajax){
+           //alert(ajax.responseText);
+           //append_template(data, "area");
+           
+           var html = "<option>城市/地区/自治州</option>";
+           for(var i=0;i<data.length;i++){
+               html +="<option data='"+data[i].id+"' value='"+data[i].district+"'>"+data[i].district+"</option>";
+           }
+           $("#area").html(html);
+        }
+    });
+}
+
+//封装其通用内容
+function append_template(jsonData,target){
+    var length = jsonData.length;
+    var html = "<option>区/县</option>";
+    for(var i=0;i<length;i++){
+        html +="<option data='"+data[i].id+"' value='"+data[i].province+"'>"+data[i].province+"</option>";
+    }
+    $("#"+target).html(html);
+};
+	
+
+/* 选择支付方式   */
+$(".checkout-option-list li").click(function() {
+	var  payType;
+	payType = $(this).index();
+	$(".checkout-option-list div").removeClass("current").css("background-color", "white").eq(payType).addClass("current").css("background-color", "rgb(223,223,223)");
+})
 </script>
 </html>

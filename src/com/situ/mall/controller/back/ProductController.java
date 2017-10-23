@@ -138,6 +138,17 @@ public class ProductController {
 		return "redirect:pageList.action";
 		
 	}
+	
+	@RequestMapping(value="/deleteAllProduct")
+	public String deleteAllProduct(Integer[] selectIds){
+		if (selectIds == null || selectIds.length < 1) {
+			return "redirect:/mall/pageList.action";
+		}
+		for (Integer id : selectIds) {
+			productService.deleteById(id);
+		}
+		return "redirect:/mall/pageList.action";
+	}
 	//删除商品
 	@RequestMapping("/deleteById")
 	private String deleteById(Integer id,Model model){

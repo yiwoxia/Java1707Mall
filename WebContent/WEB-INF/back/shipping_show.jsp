@@ -22,27 +22,11 @@
 </script>	
 </head>
 <body>
-	<!-- 导航条  -->
-	<jsp:include page="../common/header.jsp" />
 	
 	<div class="row">
 		        <div class="col-md-2">
-		            <div class="list-group">
-		                <a href="${ctx}/shipping/pageList.action" class="list-group-item active">收货地址管理</a>
-		                <a href="${ctx}/shipping/add.action" class="list-group-item">添加地址</a>
-		                
-		            </div>
 		        </div>
 		        <div class="col-md-10">
-		            <ul class="nav nav-tabs">
-		                <li class="active">
-		                    <a href="${ctx}/shipping/pageList.action">收货地址管理</a>
-		                </li>
-		                <li>
-		                	<a href="${ctx}/shipping/addShipping.action">添加收货地址</a>
-		                </li>
-		                <!-- <li><input  class="btn btn-primary" type="button" onclick="deleteAll()" value="批量删除"/></li> -->
-		            </ul>
 		            <div class="alert alert-info" role="alert">修改前请仔细检查！！！<strong>确保无误</strong></div>
 					    
 					    <form id="mainForm" action="" method="post">

@@ -11,7 +11,7 @@
 		<script type="text/javascript" src="/Java1707Mall/resources/front/js/jquery.js"></script>
 		<script type="text/javascript">
 			
-			$(function() {
+		$(function() {
 				var subImagStr = '${product.subImages}';
 				var strs = new Array();
 				strs = subImagStr.split(",");
@@ -20,7 +20,6 @@
 					$('#smallShop').append("<li ><img src='/pic/" + strs[int] + "' onmousemove='preview(this);'></li>");
 				} 
 			});
-			
 			function sub() {
 				var num = $("#num").val();
 				if (num == 1) {

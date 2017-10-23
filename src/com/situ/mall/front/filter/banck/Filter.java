@@ -43,7 +43,7 @@ public class Filter implements javax.servlet.Filter {
 //		System.out.println(uri+"----------------");
 		String requestPath = uri.substring(uri.lastIndexOf("/") + 1, uri.length());
 		System.out.println(requestPath+"+++++++++++++++++++++");
-		if (requestPath.equals("login.action")) {
+		if (requestPath.equals("login.action") || requestPath.equals("log.action")) {
 			chain.doFilter(request, response);
 			return ;
 		}else {

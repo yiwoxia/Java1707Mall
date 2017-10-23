@@ -24,14 +24,54 @@
 				<result column="create_time" property="createTime" javaType="java.sql.Date" jdbcType="DATE" />
 				<result column="update_time" property="updateTime" javaType="java.sql.Date" jdbcType="DATE" />
 		</resultMap>
+		
+	
+	<!-- cityMap -->
+	<resultMap type="City" id="cityMap">
+		<id column="id" property="id" />
+		<result column="city" property="city" />
+		<result column="province_id" property="provinceId" />
+	</resultMap>
+	
+	<!-- cityMap -->
+	<resultMap type="District" id="districtMap">
+		<id column="id" property="id" />
+		<result column="district" property="district" />
+		<result column="city_id" property="cityId" />
+	</resultMap>
+	
 	<!-- 根据id查找shiping表。查询user信息 -->
 	<select id="findByUserId" parameterType="Integer" resultMap="ShippingMap">
-		SELECT <include refid="shippingColums"></include> FROM shipping WHERE user_id=#{userId};
+		SELECT <include refid="shippingColums"></include> 
+		FROM shipping WHERE user_id=#{userId};
 	</select>
 	<!-- 添加 -->
 	<insert id="addShipping" parameterType="Shipping" >
 	 insert into shipping(user_id,receiver_name,receiver_phone,receiver_mobile,receiver_province,receiver_city,receiver_district,receiver_address,receiver_zip,create_time,update_time)
 	 values(#{userId},#{receiverName},#{receiverPhone},#{receiverMobile},#{receiverProvince},#{receiverCity},#{receiverDistrict},#{receiverAddress},#{receiverZip},now(),now())
 	</insert>
+
+	<!-- 查找所有的省份 -->
+	<select id="selectProvinces" resultType="province" >
+		select id,province,sort from province;
+	</select>
+	
+	<!-- 查找所有的市 -->
+	<select id="selectCitys" parameterType="int" resultMap="cityMap">
+		select id,city,province_id from city where province_id=#{provinceId} ;
+	</select>	
+	
+	
+	<!-- 查找所有的县区 -->
+	<select id="selectAreas" parameterType="int" resultMap="districtMap">
+		select id,district,city_id from district where city_id=#{cityId}
+	</select>
+	
+	<!-- 添加收货地址 -->
+	<insert id="addAddress" parameterType="Shipping">
+		insert into shipping (user_id,receiver_name,receiver_phone,receiver_mobile,receiver_province,receiver_city,receiver_district,receiver_address,receiver_zip,create_time,update_time) 
+		values (#{userId},#{receiverName},#{receiverPhone},#{receiverMobile},#{receiverProvince},#{receiverCity},#{receiverDistrict},#{receiverAddress},#{receiverZip},now(),now()) 
+	</insert>
+	
 
 </mapper>

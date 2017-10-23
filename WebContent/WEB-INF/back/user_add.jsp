@@ -10,21 +10,8 @@
 <body>
 	  <div class="row">
 		        <div class="col-md-2">
-		            <div class="list-group">
-		                <a href="${ctx}/user/findUser.action" class="list-group-item">用户管理</a>
-		                <a href="${ctx}/user/addUser.action" class="list-group-item active">添加用户</a>
-		                
-		            </div>
 		        </div>
 		        <div class="col-md-10">
-		            <ul class="nav nav-tabs">
-		                <li>
-		                    <a href="${ctx}/user/findUser.action">用户管理</a>
-		                </li>
-		                <li class="active">
-		                	<a href="${ctx}/user/addUser.action">添加用户</a>
-		                </li>
-		            </ul>
 		           <div class="alert alert-danger" role="alert">请注意不要添加重复的用户！！！</div>
 		           <form style="width: 60%" action="${ctx}/user/add.action" method="post">
 				   	    id：<input class="form-control" type="text" name="id" id="id"/>

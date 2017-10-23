@@ -33,6 +33,9 @@
 		<%-- 验证码：<input class="form-control" type="text" name="checkCode"/>
 		<img id="codeImg" src="${ctx}/checkImgServlet" onclick="refreshCode()"/> --%>
 		
+		验证码：<input class="form-control" type="text" name="checkCode"/>
+		<img id="codeImg" src="${ctx}/checkImgServlet" onclick="refreshCode()"/>
+		
 		<input class="btn btn-primary" type="submit" value="登录"/>
 		<%-- <a href="${ctx}/jsp/zhuce.jsp">注册账号</a> --%>
 	</form>
@@ -41,7 +44,7 @@
 <script type="text/javascript">
 	function refreshCode() {
 		$("#codeImg").attr("src", "${ctx}/checkImgServlet?" + Math.random());
-	}
+	} 
 
 </script>
 </body>

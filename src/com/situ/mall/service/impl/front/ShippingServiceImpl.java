@@ -6,7 +6,11 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.situ.mall.common.ServerResponse;
 import com.situ.mall.dao.front.ShippingDao;
+import com.situ.mall.pojo.City;
+import com.situ.mall.pojo.District;
+import com.situ.mall.pojo.Province;
 import com.situ.mall.pojo.Shipping;
 import com.situ.mall.service.front.IShippingService;
 
@@ -29,4 +33,31 @@ public class ShippingServiceImpl implements IShippingService{
 		return i>0 ? true :false;
 	}
 
+	@Override
+	public ServerResponse<List<Shipping>> addAddress(Shipping shipping) {
+		int result = shippingDao.addAddress(shipping);
+		if (result > 0) {
+			//List<Shipping> list = shipingDao.findById(shipping.getUserId());
+			return ServerResponse.createSuccess("添加成功");
+		}
+		return ServerResponse.createSuccess("添加失败");
+	}
+	
+	@Override
+	public List<Province> selectProvinces() {
+		
+		return shippingDao.selectProvinces();
+	}
+
+	@Override
+	public List<City> selectCitys(Integer provinceId) {
+		
+		return shippingDao.selectCitys(provinceId);
+	}
+
+	@Override
+	public List<District> selectAreas(Integer cityId) {
+		
+		return shippingDao.selectAreas(cityId);
+	}
 }

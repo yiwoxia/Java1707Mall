@@ -54,6 +54,17 @@
     <servlet-name>springmvc-front</servlet-name>
     <url-pattern>*.shtml</url-pattern>
   </servlet-mapping>
+  
+  	<!-- 验证码 -->
+		<servlet>
+		<servlet-name>CheckImgServlet</servlet-name>
+		<servlet-class>com.situ.mall.common.CheckImgServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CheckImgServlet</servlet-name>
+		<url-pattern>/checkImgServlet</url-pattern>
+	</servlet-mapping>
+  
   <filter>
     <display-name>LogingFilter</display-name>
     <filter-name>LogingFilter</filter-name>

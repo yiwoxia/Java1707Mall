@@ -22,9 +22,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.situ.mall.common.ServerResponse;
+import com.situ.mall.pojo.City;
+import com.situ.mall.pojo.District;
 import com.situ.mall.pojo.Order;
 import com.situ.mall.pojo.OrderItem;
 import com.situ.mall.pojo.Product;
+import com.situ.mall.pojo.Province;
 import com.situ.mall.pojo.Shipping;
 import com.situ.mall.pojo.User;
 import com.situ.mall.service.IProductService;
@@ -222,4 +226,50 @@ public class FrontOrderController {
 			return "redirect:pageLists.action";
 			
 		}
+		 //查找所有的省份
+		@RequestMapping("/selectProvinces")
+	    public @ResponseBody List<Province> selectProvinces() {
+	    	System.out.println("ProvinceController.selectProvinces()");
+	    	System.out.println("ProvinceController.selectProvinces()");
+	       return shippingService.selectProvinces();
+	    }
+		//根据省份查找其全部的市
+	   @RequestMapping("/selectCitys")
+	    public @ResponseBody List<City> selectCitys(Integer provinceId) {
+	    	System.out.println("ProvinceController.selectCitys()");
+	    	System.out.println("ProvinceController.selectCitys()");
+	       return shippingService.selectCitys(provinceId);
+	    }
+	    //根据市查找所有的县区
+	    @RequestMapping("/selectAreas")
+	    public @ResponseBody List<District> selectAreas(Integer cityId) {
+	    	System.out.println("ProvinceController.selectAreas()");
+	    	System.out.println("ProvinceController.selectAreas()");
+	    	System.out.println("县区"+cityId);
+	       return shippingService.selectAreas(cityId);
+	    }
+	
+		
+		 //添加地址
+	    @RequestMapping("addAddress")
+	    @ResponseBody
+	    private ServerResponse<List<Shipping>> addAddress(String receiverName,Shipping shipping, HttpServletRequest request) {
+	    	System.out.println(")))))"+receiverName);
+	    	System.out.println("添加地址"+shipping);
+	    	
+	    	if (shipping.getReceiverName() == null) {
+				return ServerResponse.createError("shipping不能为空");
+			}
+	    	
+	    	//获得用户的Id
+	    	HttpSession session = request.getSession();
+	    	User user = (User) session.getAttribute("user");
+	    	//将用户的Id赋值到shipping中
+	    	shipping.setUserId(user.getId());
+	    	//如果用户名为空或者用输入的是空 字符串则将用户名赋值给shipping中的收货人的姓名
+	    	if (null != shipping.getReceiverName() && shipping.getReceiverName().trim().equals("") ) {
+				shipping.setReceiverName(user.getUsername());
+			}
+	    	return shippingService.addAddress(shipping);
+	    }
 }

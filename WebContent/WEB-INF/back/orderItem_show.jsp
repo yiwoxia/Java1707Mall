@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 <%@include file="../common/head.jsp" %>
 <script type="text/javascript" src="${ctx}/resources/thirdlib/layer/layer.js"></script>    
-<%@include file="../common/header.jsp" %>
 </head>
 
 <script>
@@ -21,29 +20,22 @@ function moreAc(orderNo){
 	  content: ['${ctx}/orderBack/findOrderItem.action?orderNo='+orderNo, 'yes'], //iframe的url，no代表不显示滚动条
 	});
 }	
-		function delShipping(id) {
-		       var isDel = confirm("您确认要删除吗？");
-		       if (isDel) {
-		           //要删除
-		           location.href = "${ctx}/shipping/deleteShipping.action?id="+ id;
-		       }
-		    };
+function delShipping(id) {
+       var isDel = confirm("您确认要删除吗？");
+       if (isDel) {
+           //要删除
+           location.href = "${ctx}/shipping/deleteShipping.action?id="+ id;
+       }
+    };
 </script>	
 
 <body>
 	
 	<div class="row">
 		        <div class="col-md-2">
-		            <div class="list-group">
-		                <a href="${ctx}/backOrder/findBackOrder.action" class="list-group-item active">订单管理</a>
-		                
-		            </div>
 		        </div>
 		        <div class="col-md-10">
 		            <ul class="nav nav-tabs">
-		                <li class="active">
-		                    <a href="${ctx}/backOrder/findBackOrder.action">订单管理</a>
-		                </li>
 		                <!-- <li><input  class="btn btn-primary" type="button" onclick="deleteAll()" value="批量删除"/></li> -->
 		            </ul>
 		            <div class="alert alert-info" role="alert">删除前请认真核对地址的信息<strong>确保无误</strong></div>

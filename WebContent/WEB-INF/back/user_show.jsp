@@ -23,14 +23,6 @@
 <body>
 		<div class="row" >
 		        <div class="col-md-10">
-		            <ul class="nav nav-tabs">
-		                <li class="active">
-		                    <a href="${ctx}/user/findUser.action">用户管理</a>
-		                </li>
-		                <li>
-		                	<a href="${ctx}/user/addUser.action">添加用户</a>
-		                </li>
-		            </ul>
 		            <div class="alert alert-info" role="alert" style="width:1190px;">删除前请认真核对分类的信息<strong>确保无误</strong></div>
 					    
 					    <form id="mainForm" action="" method="post" style="width:1190px; ">

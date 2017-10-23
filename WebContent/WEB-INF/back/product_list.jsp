@@ -41,6 +41,32 @@
 		$("#pageIndex1").val(pageIndex1);
 		$("#a").submit();
 	}
+	function delProduct(id) {
+	       var isDel = confirm("您确认要删除吗？");
+	       if (isDel) {
+		           //要删除
+		          var options = {
+				url:"${ctx}/mall/deleteAllProduct.action",
+				type:"post",
+				dateType:"json",
+				data:'id='+id,
+				success:function(data){
+					if(data.status == 0){
+						layer.confirm(
+	            				'删除成功',
+	            				{btn:['关闭']},
+	            				function(){
+	            					window.location.href = "${ctx}/mall/pageList.action";
+	            				}
+	            			);
+					}else {
+						layer.msg("删除失败");
+					}
+				}
+			}
+			$.ajax(options)
+    }
+ };
 </script>
 <script type="text/javascript">  
        var urlPRC="${pageContext.request.contextPath}";  
@@ -114,8 +140,9 @@
 					 <td><a href="javascript:void(0)" onclick="updateStatus(${product.id },${product.status });">修改状态</a></td>
 					 <td><a href="${ctx}/mall/toUpdateProduct.action?id=${product.id}" method="post">修改</a>
 					<td><a class="glyphicon glyphicon-retweet" href="${ctx}/mall/updateStatusOnline.action?id=${product.id }&status=${product.status }"></a></td>
-					<td><a href="javascript:deleProduct('${product.id}')" method="post" >删除</a> 
-					</td>  
+					<%-- <td><a href="javascript:deleProduct('${product.id}')" method="post" >删除</a> 
+					</td>   --%>
+					<td><a href="javascript:delProduct(${product.id });">删除</a></td>
 					<%-- <td><span class="glyphicon glyphicon-retweet" onclick="updateStatus(${product.id },${product.status });"></span></td>
 					<td><span class="glyphicon glyphicon-pencil" onclick="update(${product.id})" ></span></td>
 					<td><span class="glyphicon glyphicon-trash" onclick="delProduct(${product.id })" ></span></td> --%>
