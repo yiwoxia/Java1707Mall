@@ -151,9 +151,10 @@ public class ProductController {
 	}
 	//删除商品
 	@RequestMapping("/deleteById")
-	private String deleteById(Integer id,Model model){
-		boolean result = productService.deleteById(id);
-		return "redirect:pageList.action";
+	@ResponseBody
+	private ServerResponse deleteById(Integer id,Model model){
+		
+		return  productService.deleteById(id);
 	}
 	//获取分类表
 	private void getByCategory(Model model) {

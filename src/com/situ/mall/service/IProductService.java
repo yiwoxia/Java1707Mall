@@ -58,7 +58,7 @@ public interface IProductService {
 	 * @param id
 	 * @return
 	 */
-	public boolean deleteById(int id);
+	public ServerResponse deleteById(int id);
 	/**
 	 * 全部删除
 	 * @param selectIds

@@ -46,7 +46,7 @@
 	       if (isDel) {
 		           //要删除
 		          var options = {
-				url:"${ctx}/mall/deleteAllProduct.action",
+				url:"${ctx}/mall/deleteById.action",
 				type:"post",
 				dateType:"json",
 				data:'id='+id,

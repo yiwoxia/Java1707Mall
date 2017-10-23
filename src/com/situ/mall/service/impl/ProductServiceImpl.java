@@ -125,14 +125,19 @@ public class ProductServiceImpl implements IProductService {
 	}
 	//删除
 	@Override
-	public boolean deleteById(int id) {
+	public ServerResponse deleteById(int id) {
+		try {
 		int reslut = productDao.deleteById(id);
 		if ( reslut > 0) {
-			return true;
+			return ServerResponse.createSuccess("删除商品成功");
 		} else {
-			return false;
+			return ServerResponse.createError("删除商品失败");
+		}
+	}catch (Exception e) {
+			return ServerResponse.createError("删除商品失败");
 		}
 	}
+	
 	//全部删除
 /*	@Override
 	public boolean delAll(int[] selectIds) {
