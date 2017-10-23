@@ -215,7 +215,7 @@ if (id == null) {
 	    if (staticPageService.productIndex(root, id)) {
 	    	return ServerResponse.createSuccess("静态化页面修改成功");
 	    }
-	    return ServerResponse.createSuccess("静态化页面修改失败");
+	    return ServerResponse.createError("静态化页面修改失败");
 	
 		}
 
