@@ -274,7 +274,7 @@
 						
 						</div>
 					</div>
-					</from>
+					</form>
 			</div>
 						<%-- <form id="subForms" action="${ctx}/order/addOrder.shtml" method="post">
 							<input type="text" name="shippingId" value="${shipping.id }" />
