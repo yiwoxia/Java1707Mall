@@ -73,33 +73,43 @@
 								<h2 class="title">收货地址</h2>
 								<!---->
 							</div>
-						
 							<div class="box-bd">
 								<div class="clearfix xm-address-list" id="checkoutAddrList">
-									<c:forEach items="${shippings}" var="shapping">
-										<dl class="item" >
-											<dt>
-												<input type="checkbox" name="shippingId" value="${shapping.id }"/>
-												<strong class="itemConsignee">收货人：${shapping.receiverName }</strong>
-												<span class="itemTag tag">家</span>
-											</dt>
-											<dd>
-												<p class="tel itemTel">手机号：${shapping.receiverMobile }</p>
-												<p class="itemRegion">地址：${shapping.receiverProvince }${shapping.receiverCity }${shapping.receiverDistrict }</p>
-												<p class="itemStreet">详细地址：${shapping.receiverAddress }</p>
-												<p>邮编：${shapping.receiverZip }</p>
-												<span class="edit-btn J_editAddr">编辑</span>
-											</dd>
-											<dd style="display:none">
-												<input type="radio" name="Checkout[address]" class="addressId"  value="10140916720030323">
-											</dd>
-										</dl>
+									<c:forEach items="${shippings}" var="shipping">
+										
+									<div class="div">
+										<label for="address${shipping.id }">
+											<dl class="item"  >
+												<dt>
+													<strong class="itemConsignee">${shipping.receiverName}</strong>
+													<span class="itemTag tag">家</span>
+												</dt>
+												<dd>
+													<p class="tel itemTel"></p>
+													<p class="itemRegion">${shipping.receiverProvince}&nbsp;&nbsp;${shipping.receiverCity }</p>
+													<p class="itemStreet">${shipping.receiverAddress}</p>
+													<p class="itemRegion">联系电话：${shipping.receiverPhone}&nbsp;&nbsp;</p>
+													<p class="itemStreet">移动电话：${shipping.receiverMobile }</p>
+													<p class="itemStreet">邮编${shipping.receiverZip}</p>
+													<span class="edit-btn J_editAddr">编辑</span>
+												</dd>
+													<input id="address${shipping.id }" type="radio" name="selectAddress"  value="${shipping.id }">
+											</dl>
+										</label>
+										</div>
 									</c:forEach>
 									<div class="item use-new-addr"  id="J_useNewAddr" data-state="off"   onclick="addAddress()"  ">
 										<span class="iconfont icon-add"><img src="${ctx}/resources/front/img/add_cart.png" /></span>
 										使用新地址
 									</div>
 								</div>
+								<div class="xm-edit-addr-backdrop" id="J_editAddrBackdrop"></div>
+							</div>
+						</div>
+						<!-- 收货地址 END-->								
+
+								
+								
 								<input type="hidden" name="newAddress[type]" id="newType" value="common">
 								<input type="hidden" name="newAddress[consignee]" id="newConsignee">
 								<input type="hidden" name="newAddress[province]" id="newProvince">
@@ -753,7 +763,21 @@ function append_template(jsonData,target){
     }
     $("#"+target).html(html);
 };
+
+/* 设置初始选择的radio  */
+$(function(){
+	$("#checkoutAddrList .item:first").addClass("current").css("background-color", "rgb(223,223,223)");
+	$("#checkoutPaymentList div:first").addClass("current").css("background-color", "rgb(223,223,223)");
+});
 	
+
+/* 选择地址  */
+$("#checkoutAddrList .div").click(function() {
+	var address ;
+	address = $(this).index();
+	$("#checkoutAddrList .item").removeClass("current").css("background-color", "white").eq(address).addClass("current").css("background-color", "rgb(223,223,223)");
+});
+
 
 /* 选择支付方式   */
 $(".checkout-option-list li").click(function() {
